@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://du8rl5qo87gh5"]
+
+[ext_resource type="PackedScene" uid="uid://cip2x6qt4jx2o" path="res://Models/Rocks/rock_pillar.glb" id="1_pfiqy"]
+[ext_resource type="Material" uid="uid://babrro4wqa6ws" path="res://Materials/Rock.tres" id="2_mqes7"]
+
+[node name="rock_pillar" instance=ExtResource("1_pfiqy")]
+
+[node name="RockWallSegment_003" parent="." index="0"]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+material_override = ExtResource("2_mqes7")
