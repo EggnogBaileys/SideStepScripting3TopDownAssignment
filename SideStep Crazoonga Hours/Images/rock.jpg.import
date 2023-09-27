@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dywkai366p5fs"
-path.s3tc="res://.godot/imported/Sand_Roughness.png-6c119c916033162f9a247bda091a05c0.s3tc.ctex"
+uid="uid://uepyjjf6s828"
+path.s3tc="res://.godot/imported/rock.jpg-5e08dfeb3d110e8ac7617440eb1374a2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Sand_Roughness.png"
-dest_files=["res://.godot/imported/Sand_Roughness.png-6c119c916033162f9a247bda091a05c0.s3tc.ctex"]
+source_file="res://Images/rock.jpg"
+dest_files=["res://.godot/imported/rock.jpg-5e08dfeb3d110e8ac7617440eb1374a2.s3tc.ctex"]
 
 [params]
 

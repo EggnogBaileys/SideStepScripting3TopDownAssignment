@@ -28,6 +28,7 @@ skeleton = NodePath("../..")
 script = ExtResource("1_k111d")
 
 [node name="Detection Radius" type="Area3D" parent="Lobster"]
+transform = Transform3D(1.3516, 0, 0, 0, 1.3516, 0, 0, 0, 1.3516, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lobster/Detection Radius"]
 transform = Transform3D(29.1807, 0, 0, 0, 29.1807, 0, 0, 0, 29.1807, 0, 0, 0)
@@ -35,6 +36,7 @@ shape = SubResource("SphereShape3D_3sfqe")
 
 [node name="RockThrowTimer" type="Timer" parent="Lobster"]
 wait_time = 1.5
+one_shot = true
 
 [node name="Eyes For Now Lol" type="MeshInstance3D" parent="Lobster"]
 transform = Transform3D(-0.0326749, 0, 1.01618, 0, 0.999379, 0, -0.462058, 0, -0.0718602, -0.0205917, 0.237864, -0.236672)
@@ -48,4 +50,5 @@ shape = SubResource("CapsuleShape3D_bmnmr")
 
 [connection signal="area_entered" from="Lobster/Detection Radius" to="Lobster" method="_on_detection_radius_area_entered"]
 [connection signal="area_exited" from="Lobster/Detection Radius" to="Lobster" method="_on_detection_radius_area_exited"]
+[connection signal="timeout" from="Lobster/RockThrowTimer" to="Lobster" method="_on_rock_throw_timer_timeout"]
 [connection signal="area_entered" from="Lobster/LobsterHurtbox" to="Lobster" method="_on_lobster_hurtbox_area_entered"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c71gjvuxq03ou"]
+
+[ext_resource type="PackedScene" uid="uid://bvlapjbiycgfw" path="res://Models/Crazoonga.glb" id="1_h8voh"]
+
+[node name="Crazoonga" instance=ExtResource("1_h8voh")]

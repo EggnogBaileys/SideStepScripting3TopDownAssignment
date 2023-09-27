@@ -3,6 +3,10 @@ extends CharacterBody3D
 
 @onready var clawSwing = $ClawSwing
 @onready var swingTimer = $ClawSwing/SwingTimer
+
+@onready var clawAnimator = $Crazoonga/Claw
+@onready var legAnimator = $Crazoonga/Legs
+
 var canSwing = true
 
 
@@ -36,6 +40,12 @@ func SideStep(delta):
 		velocity = Vector3(0, 0, walkSpeed * delta).rotated(Vector3.UP, rotation.y)
 	if Input.is_action_pressed("ui_down"):
 		velocity = Vector3(0, 0, -walkSpeed * delta).rotated(Vector3.UP, rotation.y)
+	
+	if velocity != Vector3.ZERO: 
+		legAnimator.play("Walk")
+	else: 
+		legAnimator.play("Idle")
+	
 	move_and_slide()
 func Rotation(delta):
 		
@@ -52,8 +62,14 @@ func Rotation(delta):
 
 
 func Swing():
+	canSwing = false
 	swingTimer.start()
+	clawAnimator.play("Swing")
 	$ClawSwing/Swing.play("Swing")
 
 func _on_swing_timer_timeout():
 	canSwing = true
+	
+func _on_claw_animation_finished(anim_name):
+	if anim_name == "Swing":
+		clawAnimator.play("Default")

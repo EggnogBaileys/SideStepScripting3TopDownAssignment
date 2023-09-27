@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://ww1xgqd3wnuw"]
 
-[ext_resource type="Texture2D" uid="uid://bf6rac3sl5snn" path="res://Scenes/Sand_Albedo.png" id="1_2nn6e"]
+[ext_resource type="Texture2D" uid="uid://bf6rac3sl5snn" path="res://Images/Sand_Albedo.png" id="1_60c1n"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
-[ext_resource type="Texture2D" uid="uid://ca588gsm25xp0" path="res://Scenes/Sand_Metallic2.png" id="2_3vff0"]
+[ext_resource type="Texture2D" uid="uid://ca588gsm25xp0" path="res://Images/Sand_Metallic2.png" id="2_2o7tp"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
-[ext_resource type="Texture2D" uid="uid://cd5ihcwqvwscq" path="res://Scenes/Sand_Normal.png" id="3_ux1q4"]
+[ext_resource type="Texture2D" uid="uid://cd5ihcwqvwscq" path="res://Images/Sand_Normal.png" id="3_emj6e"]
+[ext_resource type="Texture2D" uid="uid://dywkai366p5fs" path="res://Images/Sand_Roughness.png" id="4_afpy5"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/Coin Test.tscn" id="4_cha3o"]
 [ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster_with_hole.tscn" id="4_t7821"]
-[ext_resource type="Texture2D" uid="uid://dywkai366p5fs" path="res://Scenes/Sand_Roughness.png" id="4_td6kd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eqldm"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -25,17 +25,17 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pu3x"]
-albedo_color = Color(1, 0.945098, 0.807843, 1)
-albedo_texture = ExtResource("1_2nn6e")
+albedo_color = Color(0.909804, 0.862745, 0.796078, 1)
+albedo_texture = ExtResource("1_60c1n")
 albedo_texture_force_srgb = true
 metallic_specular = 0.18
-metallic_texture = ExtResource("2_3vff0")
+metallic_texture = ExtResource("2_2o7tp")
 metallic_texture_channel = 4
-roughness_texture = ExtResource("4_td6kd")
+roughness_texture = ExtResource("4_afpy5")
 roughness_texture_channel = 4
 normal_enabled = true
 normal_scale = -2.0
-normal_texture = ExtResource("3_ux1q4")
+normal_texture = ExtResource("3_emj6e")
 uv1_scale = Vector3(2, 2, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h1ku5"]
@@ -73,9 +73,11 @@ transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 
 
 [node name="Crabs" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_kqeqg")
+volume_db = -6.0
 autoplay = true
 
 [node name="Coins" type="Node3D" parent="."]
+visible = false
 
 [node name="Coin" parent="Coins" instance=ExtResource("4_cha3o")]
 transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -11.9846, 0.20499, 0)
