@@ -35,6 +35,18 @@ ClawSwing={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="environment"
+3d_physics/layer_2="player"
+3d_physics/layer_3="claw"
+3d_physics/layer_4="hazard"
+3d_physics/layer_5="coins"
+
+[physics]
+
+3d/default_gravity=80.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
