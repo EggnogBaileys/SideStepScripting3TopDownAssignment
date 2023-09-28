@@ -1,7 +1,7 @@
 # A Marker3D is just a Node3D that's more visible in the editor
 extends Marker3D
 
-@export var rock_scene = preload("res://Environment/rock.tscn")
+@export var rock_scene = preload("res://Environment/Rocks/rock.tscn")
 
 func _ready():
 	# Get all the lobsters loaded in the scene and tell them to throw rocks here

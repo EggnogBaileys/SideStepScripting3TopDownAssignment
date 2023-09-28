@@ -1,16 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://ww1xgqd3wnuw"]
+[gd_scene load_steps=24 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/Coin Test.tscn" id="4_cha3o"]
 [ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster.tscn" id="4_t7821"]
-[ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/rock_whole.tscn" id="6_rbcxr"]
-[ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/rock_pillar.tscn" id="7_cdl3o"]
-[ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/rock_boulder_3.tscn" id="8_5qd2b"]
-[ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/rock_boulder_2.tscn" id="9_exlq3"]
-[ext_resource type="PackedScene" uid="uid://bg5txh1316fg1" path="res://Environment/rock_boulder.tscn" id="10_vg6ft"]
+[ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_rbcxr"]
+[ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="7_cdl3o"]
+[ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/Rocks/rock_boulder_3.tscn" id="8_5qd2b"]
+[ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/Rocks/rock_boulder_2.tscn" id="9_exlq3"]
+[ext_resource type="PackedScene" uid="uid://bg5txh1316fg1" path="res://Environment/Rocks/rock_boulder.tscn" id="10_vg6ft"]
 [ext_resource type="Script" path="res://Scripts/Hole.gd" id="11_322po"]
+[ext_resource type="PackedScene" uid="uid://cr5srmmucyk6s" path="res://Environment/Logs/log.tscn" id="12_tvvyo"]
+[ext_resource type="PackedScene" uid="uid://b7jysigrmp5h2" path="res://Environment/Logs/log_2_stack.tscn" id="13_8uxl1"]
+[ext_resource type="PackedScene" uid="uid://d2tft6i43b5rb" path="res://Environment/Logs/log_3_stack.tscn" id="14_ihvnb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eqldm"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -153,3 +156,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0623, -0.0942512, 20.4483)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03132, 2.51424, -10.3048)
 gizmo_extents = 5.02
 script = ExtResource("11_322po")
+
+[node name="Log" parent="." instance=ExtResource("12_tvvyo")]
+transform = Transform3D(1.61201, 0, -5.7794, 0, 6, 0, 5.7794, 0, 1.61201, 22.4351, 1.49012e-08, -16.5941)
+
+[node name="Log_2stack" parent="." instance=ExtResource("13_8uxl1")]
+transform = Transform3D(5.46795, 0, 2.47014, 0, 6, 0, -2.47014, 0, 5.46795, 29.8253, -0.157562, 3.57162)
+
+[node name="Log_3stack" parent="." instance=ExtResource("14_ihvnb")]
+transform = Transform3D(-0.861681, 0, 5.9378, 0, 6, 0, -5.9378, 0, -0.861681, 39.5421, 1.49012e-08, -18.7894)

@@ -9,13 +9,13 @@
 albedo_color = Color(0.909804, 0.862745, 0.796078, 1)
 albedo_texture = ExtResource("1_akqde")
 albedo_texture_force_srgb = true
-metallic_specular = 0.07
+metallic_specular = 0.14
 metallic_texture = ExtResource("2_6sx34")
 metallic_texture_channel = 4
 roughness_texture = ExtResource("4_wjfsa")
 roughness_texture_channel = 4
 normal_enabled = true
-normal_scale = 0.29
+normal_scale = -0.29
 normal_texture = ExtResource("3_abcgf")
 heightmap_scale = 16.0
 uv1_scale = Vector3(2, 2, 2)

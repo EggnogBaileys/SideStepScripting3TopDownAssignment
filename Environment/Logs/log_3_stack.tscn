@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2tft6i43b5rb"]
+
+[ext_resource type="PackedScene" uid="uid://clbboo1scb47p" path="res://Models/Log_3stack.glb" id="1_io3ic"]
+[ext_resource type="Material" uid="uid://d3ol8hs3vyutl" path="res://Materials/Wood.tres" id="2_5dw7s"]
+
+[node name="Log_3stack" instance=ExtResource("1_io3ic")]
+
+[node name="Log_3Stack" parent="." index="0"]
+material_override = ExtResource("2_5dw7s")
