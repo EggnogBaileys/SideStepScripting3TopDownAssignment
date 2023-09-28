@@ -1,15 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://ww1xgqd3wnuw"]
+[gd_scene load_steps=21 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/Coin Test.tscn" id="4_cha3o"]
-[ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster_with_hole.tscn" id="4_t7821"]
+[ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster.tscn" id="4_t7821"]
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/rock_whole.tscn" id="6_rbcxr"]
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/rock_pillar.tscn" id="7_cdl3o"]
 [ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/rock_boulder_3.tscn" id="8_5qd2b"]
 [ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/rock_boulder_2.tscn" id="9_exlq3"]
 [ext_resource type="PackedScene" uid="uid://bg5txh1316fg1" path="res://Environment/rock_boulder.tscn" id="10_vg6ft"]
+[ext_resource type="Script" path="res://Scripts/Hole.gd" id="11_322po"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eqldm"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -33,13 +34,16 @@ material = ExtResource("1_4b8o0")
 vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
 polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6v8j4"]
+size = Vector3(129.762, 1, 285.005)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1udev"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og2fr"]
 albedo_color = Color(1, 0.224992, 0.212009, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_775ti"]
 material = SubResource("StandardMaterial3D_og2fr")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1udev"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0942512, 0)
@@ -54,15 +58,22 @@ shadow_normal_bias = 0.865
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x0dvc")
 
-[node name="Beach" type="MeshInstance3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Beach" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(59.6041, 0, 0, 0, 59.6041, 0, 0, 0, 130.214, 0, 0, 0)
 mesh = SubResource("PlaneMesh_h1ku5")
+skeleton = NodePath("../..")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Beach"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="StaticBody3D/Beach"]
 navigation_mesh = SubResource("NavigationMesh_4gdcs")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_6v8j4")
+
 [node name="Crazoonga" parent="." instance=ExtResource("1_ykupi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14.3268, 0, 0)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.3268, 0.469355, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 30, 0)
@@ -108,20 +119,23 @@ transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -9.39056, 0
 [node name="Coin11" parent="Coins" instance=ExtResource("4_cha3o")]
 transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -12.5246, 0.291305, 14.539)
 
-[node name="Lobster With Hole" parent="." instance=ExtResource("4_t7821")]
+[node name="Lobster" parent="." instance=ExtResource("4_t7821")]
 transform = Transform3D(1.6271, 0, 0, 0, 1.6271, 0, 0, 0, 1.6271, -19.7051, 1.65486, 0)
 
-[node name="EnemyHurtboxTest" type="MeshInstance3D" parent="."]
+[node name="EnemyHurtbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68645, 0)
-mesh = SubResource("BoxMesh_775ti")
+collision_layer = 8
+collision_mask = 0
 
-[node name="EnemyHurtbox" type="Area3D" parent="EnemyHurtboxTest"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHurtboxTest/EnemyHurtbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHurtbox"]
 shape = SubResource("BoxShape3D_1udev")
 
+[node name="EnemyHurtboxTest" type="MeshInstance3D" parent="EnemyHurtbox"]
+mesh = SubResource("BoxMesh_775ti")
+skeleton = NodePath("../..")
+
 [node name="rock_whole" parent="." instance=ExtResource("6_rbcxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95687, 3.87686, 3.66615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95687, 0.17311, 3.66615)
 
 [node name="rock_pillar" parent="." instance=ExtResource("7_cdl3o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5084, -0.0942512, 30.6648)
@@ -134,3 +148,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.44487, -0.0942512, -38.8606
 
 [node name="rock_boulder" parent="." instance=ExtResource("10_vg6ft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0623, -0.0942512, 20.4483)
+
+[node name="Hole" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03132, 2.51424, -10.3048)
+gizmo_extents = 5.02
+script = ExtResource("11_322po")
