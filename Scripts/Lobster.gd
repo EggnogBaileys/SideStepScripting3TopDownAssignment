@@ -27,7 +27,7 @@ func _process(_delta):
 		look_at(players[0].global_position)
 
 
-# Notice how the function doesn't check who touched it, and only runs whent
+# Notice how the function doesn't check who touched it, and only runs when
 # the claw snaps the lobster. The $LobsterHurtbox has its collision mask set
 # to 3, which I have named "claw", and the crab's $ClawSwing has its collision
 # layer set to 3, "claw" also

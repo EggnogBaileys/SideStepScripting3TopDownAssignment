@@ -11,7 +11,7 @@ const MAX_FALL_SPEED := -80.0
 @onready var clawAnimator = $Crazoonga/Claw
 @onready var legAnimator = $Crazoonga/Legs
 
-var canSwing = true
+@export var canSwing = true
 
 @export var walkSpeed = 10.0
 @export var turnSpeed = 5.0
@@ -32,12 +32,13 @@ func _physics_process(delta):
 	velocity = SideStep() if $Knockback.is_stopped() else knockback
 	if Input.is_action_pressed("ClawSwing") and canSwing:
 		Swing()
+	# Use a \ to split long lines without affecting the code.
 	velocity.y -= gravity * delta \
 		if not is_on_floor() or velocity.y < MAX_FALL_SPEED \
 		else 0
 	rotate_y(Input.get_axis("ui_right", "ui_left") * turnSpeed * delta)
 	move_and_slide()
-
+	
 
 func SideStep() -> Vector3:
 	# The most compact way to get the direction of inputs
@@ -52,8 +53,8 @@ func SideStep() -> Vector3:
 	# As a matter of style, I prefer more functional code that does
 	# not modify "velocity" outside of "_physics_process"
 	return Vector3(
-		transform.basis.z.x * direction,
-		velocity.y,
+		transform.basis.z.x * direction, 
+		velocity.y, 
 		transform.basis.z.z * direction
 	)
 
@@ -82,7 +83,7 @@ func _on_claw_animation_finished(anim_name):
 # layer set to 4, "hazard" also
 # Think of a collision mask as "reading all physics objects that affect this
 # layer," and a collision layer as "affecting the layer."
-func _on_damage_taken(by: Area3D):
+func _on_damage_taken(hazard: Node3D):
 	# Cooldown after damage is taken
 	if not $Knockback.is_stopped():
 		# Notice how instead of nesting all code below inside an "if",
@@ -91,7 +92,7 @@ func _on_damage_taken(by: Area3D):
 	$Knockback.start()
 
 	# Calculate the desired angle of the knockback
-	knockback = global_transform.origin - by.global_transform.origin
+	knockback = global_transform.origin - hazard.global_transform.origin
 	knockback = knockback.normalized() * H_KNOCKBACK_FORCE
 	knockback.y = V_KNOCKBACK_FORCE
 
@@ -103,3 +104,7 @@ func _on_damage_taken(by: Area3D):
 	tween.tween_property(self, "knockback", Vector3(0,-10, 0), $Knockback.wait_time)\
 			.set_trans(Tween.TRANS_SINE)\
 			.set_ease(Tween.EASE_OUT)
+			
+			
+			
+# In Unity we refer to ourself through "this", in Godot we use "self".

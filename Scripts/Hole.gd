@@ -2,8 +2,15 @@
 extends Marker3D
 
 @export var rock_scene = preload("res://Environment/rock.tscn")
+@export var lobster: NodePath
 
 func _ready():
+	if not lobster:
+		return
+	get_node(lobster).throw_rock.connect(spawn_rock)
+	
+	
+	return
 	# Get all the lobsters loaded in the scene and tell them to throw rocks here
 	# spawn_rock() will run when they emit the signal "throw_rock"
 	# This method uses groups, very useful: https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html
