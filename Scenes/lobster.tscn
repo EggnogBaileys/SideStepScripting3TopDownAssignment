@@ -19,36 +19,38 @@ material = SubResource("StandardMaterial3D_ooi23")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bmnmr"]
 
-[node name="Lobster With Hole" type="Node3D"]
-transform = Transform3D(1.68487, 0, 0, 0, 1.68487, 0, 0, 0, 1.68487, -19.7051, 1.65486, 0)
-
-[node name="Lobster" type="MeshInstance3D" parent="."]
+[node name="Lobster" type="MeshInstance3D" groups=["lobsters"]]
 mesh = SubResource("CapsuleMesh_0mmwu")
 skeleton = NodePath("../..")
 script = ExtResource("1_k111d")
 
-[node name="Detection Radius" type="Area3D" parent="Lobster"]
+[node name="PlayerDetection" type="Area3D" parent="."]
 transform = Transform3D(1.3516, 0, 0, 0, 1.3516, 0, 0, 0, 1.3516, 0, 0, 0)
+visible = false
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lobster/Detection Radius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
 transform = Transform3D(29.1807, 0, 0, 0, 29.1807, 0, 0, 0, 29.1807, 0, 0, 0)
 shape = SubResource("SphereShape3D_3sfqe")
 
-[node name="RockThrowTimer" type="Timer" parent="Lobster"]
+[node name="RockThrowTimer" type="Timer" parent="."]
 wait_time = 1.5
-one_shot = true
 
-[node name="Eyes For Now Lol" type="MeshInstance3D" parent="Lobster"]
+[node name="Eyes For Now Lol" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0326749, 0, 1.01618, 0, 0.999379, 0, -0.462058, 0, -0.0718602, -0.0205917, 0.237864, -0.236672)
 mesh = SubResource("SphereMesh_arx5a")
 
-[node name="LobsterHurtbox" type="Area3D" parent="Lobster"]
+[node name="LobsterHurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lobster/LobsterHurtbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LobsterHurtbox"]
 transform = Transform3D(1.10746, 0, 0, 0, 1.10746, 0, 0, 0, 1.10746, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_bmnmr")
 
-[connection signal="area_entered" from="Lobster/Detection Radius" to="Lobster" method="_on_detection_radius_area_entered"]
-[connection signal="area_exited" from="Lobster/Detection Radius" to="Lobster" method="_on_detection_radius_area_exited"]
-[connection signal="timeout" from="Lobster/RockThrowTimer" to="Lobster" method="_on_rock_throw_timer_timeout"]
-[connection signal="area_entered" from="Lobster/LobsterHurtbox" to="Lobster" method="_on_lobster_hurtbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="timeout" from="RockThrowTimer" to="." method="_on_rock_throw_timer_timeout"]
+[connection signal="area_entered" from="LobsterHurtbox" to="." method="_on_lobster_hurtbox_area_entered"]
