@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpt1mjhf2ci0"]
+
+[ext_resource type="PackedScene" uid="uid://b3qcr0txqdtok" path="res://Models/match.glb" id="1_yrcuw"]
+[ext_resource type="Material" uid="uid://orf6r465i3a" path="res://Materials/Particles/whiteparticle.tres" id="2_lmdw8"]
+
+[sub_resource type="Curve" id="Curve_7njcy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k0g3r"]
+curve = SubResource("Curve_7njcy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj0ru"]
+scale_min = 0.0
+scale_max = 32.49
+scale_curve = SubResource("CurveTexture_k0g3r")
+
+[sub_resource type="QuadMesh" id="QuadMesh_co6tn"]
+material = ExtResource("2_lmdw8")
+
+[node name="match" instance=ExtResource("1_yrcuw")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(0.09, 0, 0, 0, 1.9, 0, 0, 0, 0.09, 0, 1.89495, 0)
+process_material = SubResource("ParticleProcessMaterial_nj0ru")
+draw_pass_1 = SubResource("QuadMesh_co6tn")

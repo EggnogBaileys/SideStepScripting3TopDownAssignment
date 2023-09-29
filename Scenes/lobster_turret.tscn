@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvqvtg7qpfn7d"]
+
+[ext_resource type="Script" path="res://Scripts/Lobster.gd" id="1_2fine"]
+[ext_resource type="PackedScene" uid="uid://6nogjjcudn8r" path="res://Models/Lobster_Anims.glb" id="2_luh2o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3sfqe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ooi23"]
+albedo_color = Color(0.709804, 0, 0.0980392, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_arx5a"]
+material = SubResource("StandardMaterial3D_ooi23")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qacf"]
+size = Vector3(2.49897, 1.07489, 4.3291)
+
+[node name="Lobster" type="MeshInstance3D" groups=["lobsters"]]
+skeleton = NodePath("../..")
+script = ExtResource("1_2fine")
+
+[node name="Lobster_Anims" parent="." instance=ExtResource("2_luh2o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.09281)
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+transform = Transform3D(1.3516, 0, 0, 0, 1.3516, 0, 0, 0, 1.3516, 0, 0, 0)
+visible = false
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(29.1807, 0, 0, 0, 29.1807, 0, 0, 0, 29.1807, 0, 0, 0)
+shape = SubResource("SphereShape3D_3sfqe")
+
+[node name="RockThrowTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="Eyes For Now Lol" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0326749, 0, 1.01618, 0, 0.999379, 0, -0.462058, 0, -0.0718602, -0.0205917, 0.237864, -0.236672)
+mesh = SubResource("SphereMesh_arx5a")
+
+[node name="LobsterHurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LobsterHurtbox"]
+transform = Transform3D(1.10746, 0, 0, 0, 1.10746, 0, 0, 0, 1.10746, 0, 0.384693, -0.694736)
+shape = SubResource("BoxShape3D_8qacf")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="timeout" from="RockThrowTimer" to="." method="_on_rock_throw_timer_timeout"]
+[connection signal="area_entered" from="LobsterHurtbox" to="." method="_on_lobster_hurtbox_area_entered"]

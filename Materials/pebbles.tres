@@ -1,6 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://ocwqtyd066l0"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://ocwqtyd066l0"]
 
 [ext_resource type="Texture2D" uid="uid://ngngrujr5dpc" path="res://Images/Textures/pebbles_albedo3.png" id="1_yxcqu"]
+[ext_resource type="Texture2D" uid="uid://1jaifxlwouip" path="res://Images/Textures/pebbles_height.png" id="2_jqkoi"]
 [ext_resource type="Texture2D" uid="uid://cb8j2ao6cfor3" path="res://Images/Textures/pebbles_normal2.png" id="3_bl8aq"]
 [ext_resource type="Texture2D" uid="uid://bui801brq10n8" path="res://Images/Textures/pebbles_smoothness.png" id="3_h15sq"]
 
@@ -11,11 +12,16 @@ metallic = 0.03
 metallic_specular = 0.0
 metallic_texture = ExtResource("3_h15sq")
 metallic_texture_channel = 4
-roughness = 0.97
 roughness_texture = ExtResource("3_h15sq")
 roughness_texture_channel = 4
 normal_enabled = true
-normal_scale = -4.0
+normal_scale = -3.83
 normal_texture = ExtResource("3_bl8aq")
+heightmap_enabled = true
+heightmap_scale = 2.67
+heightmap_deep_parallax = true
+heightmap_min_layers = 1
+heightmap_max_layers = 14
+heightmap_texture = ExtResource("2_jqkoi")
 uv1_scale = Vector3(1.255, 2.51, 2.51)
 uv1_triplanar_sharpness = 0.277393

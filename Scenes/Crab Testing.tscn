@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
+[ext_resource type="Material" uid="uid://ocwqtyd066l0" path="res://Materials/pebbles.tres" id="1_sm71m"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
-[ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="3_mt4v2"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="4_cha3o"]
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_rbcxr"]
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="7_cdl3o"]
@@ -52,7 +52,7 @@ material = SubResource("StandardMaterial3D_og2fr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0942512, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.834243, -0.0347498, -0.550301, -0.352921, 0.800457, 0.484474, 0.423657, 0.598381, -0.68004, -30.2135, 52.2636, -57.2962)
+transform = Transform3D(-0.752535, -0.21957, -0.62087, -0.398127, 0.902673, 0.163326, 0.524582, 0.370093, -0.766711, -30.2135, 52.2636, -57.2962)
 light_color = Color(0.992157, 1, 0.870588, 1)
 light_energy = 0.709
 shadow_enabled = true
@@ -65,10 +65,12 @@ environment = SubResource("Environment_x0dvc")
 
 [node name="Beach" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(59.6041, 0, 0, 0, 59.6041, 0, 0, 0, 130.214, 0, 0, 0)
+material_override = ExtResource("1_sm71m")
 mesh = SubResource("PlaneMesh_h1ku5")
 skeleton = NodePath("../..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="StaticBody3D/Beach"]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_4gdcs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -77,9 +79,6 @@ shape = SubResource("BoxShape3D_6v8j4")
 
 [node name="Crazoonga" parent="." instance=ExtResource("1_ykupi")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.3268, 0.469355, 0)
-
-[node name="Fish" parent="." instance=ExtResource("3_mt4v2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39652, 0, -20.7956)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 30, 0)
