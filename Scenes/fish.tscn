@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0rx0lsvlnt8o"]
+[gd_scene load_steps=14 format=3 uid="uid://0rx0lsvlnt8o"]
 
 [ext_resource type="Script" path="res://Scripts/Fish.gd" id="1_awhbh"]
 
@@ -185,6 +185,10 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_80vhk"]
 radius = 22.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_46lpy"]
+radius = 0.362171
+height = 1.70639
+
 [node name="Fish" type="CharacterBody3D"]
 collision_layer = 9
 collision_mask = 2
@@ -268,4 +272,23 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
 shape = SubResource("SphereShape3D_80vhk")
 
+[node name="FlopTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(4.86352, 0, 0, 0, -2.12591e-07, -4.86352, 0, 4.86352, -2.12591e-07, -0.0841346, 0, 0)
+shape = SubResource("CapsuleShape3D_46lpy")
+
+[node name="Knockback" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="FlopTimer" to="." method="_on_flop_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Knockback" to="." method="_on_knockback_timeout"]
