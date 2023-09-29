@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://txilkiahmkwa"]
+
+[ext_resource type="Script" path="res://Scripts/Hole.gd" id="1_cxjp0"]
+[ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster.tscn" id="2_d7ud7"]
+
+[node name="Hole" type="Marker3D"]
+gizmo_extents = 5.02
+script = ExtResource("1_cxjp0")
+lobster = NodePath("Lobster")
+
+[node name="Lobster" parent="." instance=ExtResource("2_d7ud7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

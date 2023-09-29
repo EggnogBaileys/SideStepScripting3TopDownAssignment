@@ -1,16 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://ww1xgqd3wnuw"]
+[gd_scene load_steps=23 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/Coin Test.tscn" id="4_cha3o"]
-[ext_resource type="PackedScene" uid="uid://dvk8m15ju4hcs" path="res://Scenes/lobster.tscn" id="4_t7821"]
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_rbcxr"]
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="7_cdl3o"]
 [ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/Rocks/rock_boulder_3.tscn" id="8_5qd2b"]
 [ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/Rocks/rock_boulder_2.tscn" id="9_exlq3"]
 [ext_resource type="PackedScene" uid="uid://bg5txh1316fg1" path="res://Environment/Rocks/rock_boulder.tscn" id="10_vg6ft"]
-[ext_resource type="Script" path="res://Scripts/Hole.gd" id="11_322po"]
+[ext_resource type="PackedScene" uid="uid://txilkiahmkwa" path="res://Scenes/lobster_hole.tscn" id="11_77tsg"]
 [ext_resource type="PackedScene" uid="uid://cr5srmmucyk6s" path="res://Environment/Logs/log.tscn" id="12_tvvyo"]
 [ext_resource type="PackedScene" uid="uid://b7jysigrmp5h2" path="res://Environment/Logs/log_2_stack.tscn" id="13_8uxl1"]
 [ext_resource type="PackedScene" uid="uid://d2tft6i43b5rb" path="res://Environment/Logs/log_3_stack.tscn" id="14_ihvnb"]
@@ -122,18 +121,18 @@ transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -9.39056, 0
 [node name="Coin11" parent="Coins" instance=ExtResource("4_cha3o")]
 transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -12.5246, 0.291305, 14.539)
 
-[node name="Lobster" parent="." instance=ExtResource("4_t7821")]
-transform = Transform3D(1.6271, 0, 0, 0, 1.6271, 0, 0, 0, 1.6271, -19.7051, 1.65486, 0)
+[node name="Hole" parent="." instance=ExtResource("11_77tsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.544, 0, 0)
 
-[node name="EnemyHurtbox" type="Area3D" parent="."]
+[node name="EnemyHurtboxTest" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68645, 0)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHurtbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHurtboxTest"]
 shape = SubResource("BoxShape3D_1udev")
 
-[node name="EnemyHurtboxTest" type="MeshInstance3D" parent="EnemyHurtbox"]
+[node name="EnemyHurtboxTest" type="MeshInstance3D" parent="EnemyHurtboxTest"]
 mesh = SubResource("BoxMesh_775ti")
 skeleton = NodePath("../..")
 
@@ -151,11 +150,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.44487, -0.0942512, -38.8606
 
 [node name="rock_boulder" parent="." instance=ExtResource("10_vg6ft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0623, -0.0942512, 20.4483)
-
-[node name="Hole" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03132, 2.51424, -10.3048)
-gizmo_extents = 5.02
-script = ExtResource("11_322po")
 
 [node name="Log" parent="." instance=ExtResource("12_tvvyo")]
 transform = Transform3D(1.61201, 0, -5.7794, 0, 6, 0, 5.7794, 0, 1.61201, 22.4351, 1.49012e-08, -16.5941)
