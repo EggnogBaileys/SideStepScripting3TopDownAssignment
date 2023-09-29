@@ -1,13 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvk8m15ju4hcs"]
+[gd_scene load_steps=7 format=3 uid="uid://dvk8m15ju4hcs"]
 
 [ext_resource type="Script" path="res://Scripts/Lobster.gd" id="1_k111d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o42r"]
-albedo_color = Color(0.560784, 0.227451, 0.0666667, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0mmwu"]
-lightmap_size_hint = Vector2i(17, 14)
-material = SubResource("StandardMaterial3D_3o42r")
+[ext_resource type="PackedScene" uid="uid://6nogjjcudn8r" path="res://Models/Lobster_Anims.glb" id="2_0duv5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3sfqe"]
 
@@ -17,12 +11,15 @@ albedo_color = Color(0.709804, 0, 0.0980392, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_arx5a"]
 material = SubResource("StandardMaterial3D_ooi23")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bmnmr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qacf"]
+size = Vector3(2.49897, 1.07489, 4.3291)
 
 [node name="Lobster" type="MeshInstance3D" groups=["lobsters"]]
-mesh = SubResource("CapsuleMesh_0mmwu")
 skeleton = NodePath("../..")
 script = ExtResource("1_k111d")
+
+[node name="Lobster_Anims" parent="." instance=ExtResource("2_0duv5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.09281)
 
 [node name="PlayerDetection" type="Area3D" parent="."]
 transform = Transform3D(1.3516, 0, 0, 0, 1.3516, 0, 0, 0, 1.3516, 0, 0, 0)
@@ -47,8 +44,8 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LobsterHurtbox"]
-transform = Transform3D(1.10746, 0, 0, 0, 1.10746, 0, 0, 0, 1.10746, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_bmnmr")
+transform = Transform3D(1.10746, 0, 0, 0, 1.10746, 0, 0, 0, 1.10746, 0, 0.384693, -0.694736)
+shape = SubResource("BoxShape3D_8qacf")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
