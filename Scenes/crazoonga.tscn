@@ -603,7 +603,6 @@ skeleton = NodePath("")
 
 [node name="Shell_C" type="Node3D" parent="Crazoonga"]
 transform = Transform3D(-4.47941e-08, 0, 1.02477, 0, 1.02477, 0, -1.02477, 0, -4.47941e-08, 0.0100994, -0.109092, 0.000470401)
-visible = false
 
 [node name="Shell C" type="MeshInstance3D" parent="Crazoonga/Shell_C"]
 transform = Transform3D(1, 0, 0, 0, 0.999408, 0.0344045, 0, -0.0344045, 0.999408, 0, 0, 0)

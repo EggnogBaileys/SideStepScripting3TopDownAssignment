@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://ww1xgqd3wnuw"]
+[gd_scene load_steps=24 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
+[ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="3_mt4v2"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="4_cha3o"]
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_rbcxr"]
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="7_cdl3o"]
@@ -76,6 +77,9 @@ shape = SubResource("BoxShape3D_6v8j4")
 
 [node name="Crazoonga" parent="." instance=ExtResource("1_ykupi")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.3268, 0.469355, 0)
+
+[node name="Fish" parent="." instance=ExtResource("3_mt4v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39652, 0, -20.7956)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 30, 0)
