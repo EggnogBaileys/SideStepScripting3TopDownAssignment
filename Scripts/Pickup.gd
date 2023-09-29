@@ -1,7 +1,14 @@
 extends Node3D
 
-func _on_area_3d_area_entered(area):
-	if area.name == "CrazoongaArea3D":
-		Singleton.coinCoint += 1
-		print(Singleton.coinCoint)
+signal checkShells
+
+var crazoonga: NodePath
+
+
+
+func _on_area_3d_body_entered(_body):
+	if Singleton.shellCount < 3:
+		Singleton.shellCount += 1
+		emit_signal("checkShells")
+		print(Singleton.shellCount)
 		queue_free()

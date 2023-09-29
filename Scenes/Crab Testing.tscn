@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
-[ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/Coin Test.tscn" id="4_cha3o"]
+[ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="4_cha3o"]
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_rbcxr"]
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="7_cdl3o"]
 [ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/Rocks/rock_boulder_3.tscn" id="8_5qd2b"]
@@ -85,44 +85,20 @@ stream = ExtResource("2_kqeqg")
 volume_db = -6.0
 autoplay = true
 
-[node name="Coins" type="Node3D" parent="."]
-visible = false
-
-[node name="Coin" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -11.9846, 0.20499, 0)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -11.9846, 0.20499, -14.134)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -11.9846, 0.20499, -24.2522)
-
-[node name="Coin4" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 4.31601, 0.20499, -24.2522)
-
-[node name="Coin5" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 22.0193, 0.117476, -24.3464)
-
-[node name="Coin6" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 21.995, 0.541179, -3.56359)
-
-[node name="Coin7" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 21.9948, 0.154199, 10.6764)
-
-[node name="Coin8" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 21.9948, 0.20499, 33.7821)
-
-[node name="Coin9" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -1.94606, 0.20499, 33.7821)
-
-[node name="Coin10" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -9.39056, 0.20499, 33.7821)
-
-[node name="Coin11" parent="Coins" instance=ExtResource("4_cha3o")]
-transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, -12.5246, 0.291305, 14.539)
-
 [node name="Hole" parent="." instance=ExtResource("11_77tsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.544, 0, 0)
+
+[node name="Shell" parent="." instance=ExtResource("4_cha3o")]
+transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 14.2731, 0.20499, 10.2479)
+
+[node name="Shell2" parent="." instance=ExtResource("4_cha3o")]
+transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 9.88406, 0.20499, -16.1637)
+
+[node name="Shell3" parent="." instance=ExtResource("4_cha3o")]
+transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 10.1402, 0.20499, -5.54042)
+
+[node name="Shell4" parent="." instance=ExtResource("4_cha3o")]
+transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 3.85997, 0.20499, 16.8035)
 
 [node name="EnemyHurtboxTest" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68645, 0)

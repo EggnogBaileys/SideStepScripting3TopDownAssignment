@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://xuuyr4xk2grp"]
+
+[ext_resource type="Script" path="res://Scripts/Pickup.gd" id="1_jtwhv"]
+[ext_resource type="PackedScene" uid="uid://dnqhbphlgpnlx" path="res://Models/Shell_A.glb" id="2_v4rbj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5614"]
+albedo_color = Color(0.552941, 0.231373, 0.117647, 1)
+
+[sub_resource type="Animation" id="Animation_d0aur"]
+resource_name = "ShellSpin"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.261799), Vector3(0, -3.14159, 0.261799), Vector3(0, -6.28319, 0.261799)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skqbf"]
+_data = {
+"ShellSpin": SubResource("Animation_d0aur")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ddsh"]
+size = Vector3(0.239795, 0.147228, 0.253969)
+
+[node name="Shell" type="Node3D" groups=["shells"]]
+transform = Transform3D(8.86889, 0, 0, 0, 8.86889, 0, 0, 0, 8.86889, 0, 0.20499, 0)
+script = ExtResource("1_jtwhv")
+
+[node name="Shell_A" parent="." instance=ExtResource("2_v4rbj")]
+transform = Transform3D(0.0891824, -0.0238963, 0, 0.0238963, 0.0891824, 0, 0, 0, 0.0923284, 0, -0.0928991, 0)
+
+[node name="Shell A" parent="Shell_A" index="0"]
+material_override = SubResource("StandardMaterial3D_c5614")
+
+[node name="ShellAnim" type="AnimationPlayer" parent="Shell_A"]
+autoplay = "ShellSpin"
+libraries = {
+"": SubResource("AnimationLibrary_skqbf")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0960752, 0)
+shape = SubResource("BoxShape3D_3ddsh")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Shell_A"]

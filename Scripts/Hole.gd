@@ -13,11 +13,11 @@ func _ready():
 	return
 
 	# This method uses groups, very useful: https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html
-	for lobster in get_tree().get_nodes_in_group("lobsters"):
+	#for lobster in get_tree().get_nodes_in_group("lobsters"):
 		# Signal Tutorials:
 		# https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-connect
 		# https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html#connecting-a-signal-via-code
-		lobster.throw_rock.connect(spawn_rock)
+		#lobster.throw_rock.connect(spawn_rock)
 
 
 func spawn_rock():

@@ -18,12 +18,20 @@ const MAX_FALL_SPEED := -80.0
 
 # If shells are 0 and crab is hit, crab perishes.
 # With each shell found, crab can take one extra hit.
-var shells = 0
+var shells: int = Singleton.shellCount
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Declare variables that are used every frame only once, for performance
 var knockback := Vector3.ZERO
 var direction: float
+
+
+func _ready():
+	CheckShellCount()
+	
+	for shellObjects in get_tree().get_nodes_in_group("shells"):
+		shellObjects.checkShells.connect(CheckShellCount)
+
 
 func _physics_process(delta):
 
@@ -36,7 +44,6 @@ func _physics_process(delta):
 		else 0
 	rotate_y(Input.get_axis("ui_right", "ui_left") * turnSpeed * delta)
 	move_and_slide()
-	
 
 func SideStep() -> Vector3:
 
@@ -70,6 +77,10 @@ func _on_claw_animation_finished(anim_name):
 		clawAnimator.play("Default")
 
 func _on_damage_taken(hazard: Node3D):
+	
+	Singleton.shellCount -= 1
+	CheckShellCount()
+	
 	if not $Knockback.is_stopped():
 		return
 	$Knockback.start()
@@ -86,7 +97,15 @@ func _on_damage_taken(hazard: Node3D):
 	tween.tween_property(self, "knockback", Vector3(0,-10, 0), $Knockback.wait_time)\
 			.set_trans(Tween.TRANS_SINE)\
 			.set_ease(Tween.EASE_OUT)
-			
-			
-			
+
+
+
+
+func CheckShellCount():
+	$Crazoonga/Shell_A.visible = Singleton.shellCount == 1
+	$Crazoonga/Shell_B.visible = Singleton.shellCount == 2
+	$Crazoonga/Shell_C.visible = Singleton.shellCount == 3
+
+
+
 # In Unity we refer to ourself through "this", in Godot we use "self".
