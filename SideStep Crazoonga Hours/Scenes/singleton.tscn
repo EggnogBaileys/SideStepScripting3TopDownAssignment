@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkfc1hnl57rcg"]
-
-[ext_resource type="Script" path="res://Scripts/Singleton.gd" id="1_7fj2d"]
-
-[node name="Singleton" type="Node3D"]
-script = ExtResource("1_7fj2d")

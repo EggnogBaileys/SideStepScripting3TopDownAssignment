@@ -1,40 +1,47 @@
 extends CharacterBody3D
 
+# Unused for now
+signal death
+
 # Do not leave "magic numbers" in your code, give them constant names
 const H_KNOCKBACK_FORCE := 40.0
 const V_KNOCKBACK_FORCE := 25.0
 const MAX_FALL_SPEED := -80.0
+const DEFAULT_WALK_SPEED := 10.0
+const DEFAULT_TURN_SPEED := 5.0
+const DEFAULT_SHELL_COUNT := 0
+const MAX_SHELL_COUNT := 3
+const MIN_SHELL_COUNT := 0
+
+enum Shell {
+	NONE = MIN_SHELL_COUNT,
+	BRONZE,
+	SILVER,
+	GOLD
+}
 
 @onready var clawSwing = $ClawSwing
-@onready var swingTimer = $ClawSwing/SwingTimer
 
-@onready var clawAnimator = $Crazoonga/Claw
-@onready var legAnimator = $Crazoonga/Legs
+@onready var clawAnimator = $Claw
+@onready var legAnimator = $Legs
 
 @export var canSwing = true
 
-@export var walkSpeed = 10.0
-@export var turnSpeed = 5.0
+@export var walkSpeed = DEFAULT_WALK_SPEED
+@export var turnSpeed = DEFAULT_TURN_SPEED
 
 # If shells are 0 and crab is hit, crab perishes.
 # With each shell found, crab can take one extra hit.
-var shells: int = Singleton.shellCount
+# This is a setter. For each shell_count change, the function set_shell is run
+var shell_count := DEFAULT_SHELL_COUNT:
+	set = set_shells
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Declare variables that are used every frame only once, for performance
 var knockback := Vector3.ZERO
 var direction: float
 
-
-func _ready():
-	CheckShellCount()
-	
-	for shellObjects in get_tree().get_nodes_in_group("shells"):
-		shellObjects.checkShells.connect(CheckShellCount)
-
-
 func _physics_process(delta):
-
 	velocity = SideStep() if $Knockback.is_stopped() else knockback
 	if Input.is_action_pressed("ClawSwing") and canSwing:
 		Swing()
@@ -45,27 +52,19 @@ func _physics_process(delta):
 	rotate_y(Input.get_axis("ui_right", "ui_left") * turnSpeed * delta)
 	move_and_slide()
 
+
 func SideStep() -> Vector3:
-
 	direction = Input.get_axis("ui_down", "ui_up") * walkSpeed
-
-	if direction:
-		legAnimator.play("Walk")
-	else:
-		legAnimator.play("Idle")
-
+	legAnimator.play("Walk" if direction else "Idle")
 	return Vector3(
-		transform.basis.z.x * direction, 
-		velocity.y, 
+		transform.basis.z.x * direction,
+		velocity.y,
 		transform.basis.z.z * direction
 	)
 
-# I didn't touch the swinging
+
 func Swing():
-	canSwing = false
-	swingTimer.start()
 	clawAnimator.play("Swing")
-	$ClawSwing/Swing.play("Swing")
 
 
 func _on_swing_timer_timeout():
@@ -76,14 +75,22 @@ func _on_claw_animation_finished(anim_name):
 	if anim_name == "Swing":
 		clawAnimator.play("Default")
 
-func _on_damage_taken(hazard: Node3D):
-	
-	Singleton.shellCount -= 1
-	CheckShellCount()
-	
+
+func _on_contact(contact: Node3D):
+	if contact.is_in_group("shells"):
+		if shell_count < MAX_SHELL_COUNT:
+			shell_count += 1
+			contact.picked_up()
+		return
+	take_damage(contact)
+
+
+func take_damage(hazard: Node3D):
 	if not $Knockback.is_stopped():
 		return
 	$Knockback.start()
+
+	shell_count -= 1
 
 	knockback = global_transform.origin - hazard.global_transform.origin
 	knockback = knockback.normalized() * H_KNOCKBACK_FORCE
@@ -99,13 +106,23 @@ func _on_damage_taken(hazard: Node3D):
 			.set_ease(Tween.EASE_OUT)
 
 
+func set_shells(shells: int):
+	shell_count = clamp(shells, MIN_SHELL_COUNT, MAX_SHELL_COUNT)
+	show_shells()
+	print_debug("Shell count: ", shell_count)
 
 
-func CheckShellCount():
-	$Crazoonga/Shell_A.visible = Singleton.shellCount == 1
-	$Crazoonga/Shell_B.visible = Singleton.shellCount == 2
-	$Crazoonga/Shell_C.visible = Singleton.shellCount == 3
-
-
-
-# In Unity we refer to ourself through "this", in Godot we use "self".
+func show_shells():
+	# Mapping, all objects in the array have this function run on them.
+	# It can be a regular function, or a Callable,which is like
+	# a tiny function (like in this case).
+	# I entered the nodes manually, but a more flexible way would be to
+	# add all the shells to the group "shell_hats", and get all nodes in
+	# this group. This returns an array, which can have a function mappted to it
+	[$ShellA, $ShellB, $ShellC].map(func(s): s.hide())
+	match shell_count:
+		Shell.NONE: death.emit()
+		Shell.BRONZE: $ShellA.show()
+		Shell.SILVER: $ShellB.show()
+		Shell.GOLD: $ShellC.show()
+		_: assert(false, "Error: shell type '%s' not valid" % shell_count)
