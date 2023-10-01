@@ -9,7 +9,7 @@ var direction: float
 
 @export var speed: float = 35.0
 @export var max_speed: float = 35.0
-var health: int = 3
+@export var health: int = 3
 
 var canMove: bool = false
 

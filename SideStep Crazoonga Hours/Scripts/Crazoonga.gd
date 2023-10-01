@@ -41,16 +41,25 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var knockback := Vector3.ZERO
 var direction: float
 
-func _physics_process(delta):
-	velocity = SideStep() if $Knockback.is_stopped() else knockback
-	if Input.is_action_pressed("ClawSwing") and canSwing:
-		Swing()
 
-	velocity.y -= gravity * delta \
-		if not is_on_floor() or velocity.y < MAX_FALL_SPEED \
-		else 0
-	rotate_y(Input.get_axis("ui_right", "ui_left") * turnSpeed * delta)
-	move_and_slide()
+@export var in_cutscene = false
+
+
+
+func _physics_process(delta):
+	
+	if not in_cutscene:
+		velocity = SideStep() if $Knockback.is_stopped() else knockback
+		if Input.is_action_pressed("ClawSwing") and canSwing:
+			Swing()
+
+		velocity.y -= gravity * delta \
+			if not is_on_floor() or velocity.y < MAX_FALL_SPEED \
+			else 0
+		rotate_y(Input.get_axis("ui_right", "ui_left") * turnSpeed * delta)
+		move_and_slide()
+	else:
+		legAnimator.play("Idle")
 
 
 func SideStep() -> Vector3:
@@ -77,6 +86,10 @@ func _on_claw_animation_finished(anim_name):
 
 
 func _on_contact(contact: Node3D):
+	if contact.is_in_group("firstShell"):
+		shell_count += 1
+		contact.increment_progress()
+		return
 	if contact.is_in_group("shells"):
 		if shell_count < MAX_SHELL_COUNT:
 			shell_count += 1

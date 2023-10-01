@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ww1xgqd3wnuw"]
+[gd_scene load_steps=23 format=3 uid="uid://ww1xgqd3wnuw"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_4b8o0"]
-[ext_resource type="Material" uid="uid://ocwqtyd066l0" path="res://Materials/pebbles.tres" id="1_sm71m"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_ykupi"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="2_kqeqg"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="4_cha3o"]
@@ -65,7 +64,7 @@ environment = SubResource("Environment_x0dvc")
 
 [node name="Beach" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(59.6041, 0, 0, 0, 59.6041, 0, 0, 0, 130.214, 0, 0, 0)
-material_override = ExtResource("1_sm71m")
+material_override = ExtResource("1_4b8o0")
 mesh = SubResource("PlaneMesh_h1ku5")
 skeleton = NodePath("../..")
 
@@ -88,7 +87,7 @@ stream = ExtResource("2_kqeqg")
 volume_db = -6.0
 autoplay = true
 
-[node name="Hole" parent="." instance=ExtResource("11_77tsg")]
+[node name="Lobster" parent="." instance=ExtResource("11_77tsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.544, 0, 0)
 
 [node name="Shell" parent="." instance=ExtResource("4_cha3o")]

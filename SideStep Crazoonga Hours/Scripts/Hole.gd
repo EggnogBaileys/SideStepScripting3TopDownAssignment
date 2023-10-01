@@ -4,8 +4,6 @@ extends Marker3D
 @export var rock_scene = preload("res://Environment/Rocks/rock.tscn")
 @export var lobster: NodePath
 
-onready 
-
 func _ready():
 	if not lobster:
 		return
