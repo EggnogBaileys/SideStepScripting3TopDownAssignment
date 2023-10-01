@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/Crab Testing.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Singleton="*res://Scenes/singleton.tscn"
-
 [display]
 
 window/stretch/mode="viewport"
