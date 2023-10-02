@@ -4,6 +4,7 @@ extends Node3D
 @onready var player = $Crazoonga
 
 @onready var fish = $Enemies/Fish
+var fishDefeated = false
 
 # incremented whenever the player completes 'level progress', 
 # indicated by the designer's choice.
@@ -18,6 +19,14 @@ func _ready():
 	$"Cameras/Camera2/Tutorial Text2".hide()
 
 func _process(_delta):
+	
+	if fish == null and fishDefeated == false:
+		fishDefeated = true
+		Singleton.enemiesDefeated += 1
+		$BossBattle.stop()
+		$"Cameras/Camera4/You Win".show()
+		await get_tree().create_timer(3.0).timeout
+		# Load next stage
 	
 	if currentProgress < 2:
 		if player.position.z < 15 and currentCam == 1:

@@ -25,9 +25,17 @@ sky_material = SubResource("ProceduralSkyMaterial_44up5")
 
 [sub_resource type="Environment" id="Environment_yk1mq"]
 background_mode = 2
+background_energy_multiplier = 0.9
 sky = SubResource("Sky_oart6")
+ambient_light_color = Color(0, 0.737255, 0.937255, 1)
+ambient_light_energy = 2.58
 tonemap_mode = 2
 glow_enabled = true
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.007
+volumetric_fog_emission = Color(0.423529, 0.458824, 0.662745, 1)
+volumetric_fog_length = 50.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vypwb"]
 material = ExtResource("1_0j77u")
@@ -151,6 +159,45 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_neeam"]
+resource_name = "Cam3To4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cameras/Camera3:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cameras/Camera4:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RockWalls/StaticBody3D/CollisionShape3D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_2poa0"]
 resource_name = "Cam3Zoom"
 length = 5.0
@@ -251,45 +298,6 @@ tracks/7/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_neeam"]
-resource_name = "Cam3To4"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cameras/Camera3:current")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cameras/Camera4:current")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RockWalls/StaticBody3D/CollisionShape3D2:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u70oc"]
 _data = {
 "Cam1To2": SubResource("Animation_p58sq"),
@@ -341,6 +349,7 @@ outline_size = 50
 
 [node name="Fishy name" type="Label3D" parent="Cameras"]
 transform = Transform3D(-0.999784, 0.00137751, -0.0207495, 0.00464435, 0.987399, -0.158232, 0.0202698, -0.158295, -0.987191, 1.91675, 4.48116, -66.2538)
+visible = false
 billboard = 1
 modulate = Color(1, 1, 1, 0)
 outline_modulate = Color(0, 0, 0, 0)
@@ -354,6 +363,15 @@ transform = Transform3D(0.999768, -0.00154172, 0.0214806, -0.00557381, 0.944925,
 
 [node name="Camera4" type="Camera3D" parent="Cameras"]
 transform = Transform3D(0.271958, 0.501316, -0.821414, 0.0122097, 0.85172, 0.523855, 0.962232, -0.152496, 0.225511, -24.8723, 19.0423, -21.9201)
+
+[node name="You Win" type="Label3D" parent="Cameras/Camera4"]
+transform = Transform3D(1, 1.49012e-08, -1.04308e-07, 0, 1, -4.24683e-07, 0, 1.11759e-08, 1, -0.0339146, 0.536369, -2.62446)
+visible = false
+billboard = 1
+text = "Enemies Defeated 
+- Next Stage -"
+font_size = 80
+outline_size = 28
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.752535, -0.21957, -0.62087, -0.398127, 0.902673, 0.163326, 0.524582, 0.370093, -0.766711, -30.2135, 52.2636, -57.2962)

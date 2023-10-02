@@ -104,6 +104,8 @@ func take_damage(hazard: Node3D):
 	$Knockback.start()
 
 	shell_count -= 1
+	
+	$Hit.play()
 
 	knockback = global_transform.origin - hazard.global_transform.origin
 	knockback = knockback.normalized() * H_KNOCKBACK_FORCE

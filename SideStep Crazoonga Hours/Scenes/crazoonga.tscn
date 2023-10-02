@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsn5l2kp7qlq1"]
+[gd_scene load_steps=30 format=3 uid="uid://dsn5l2kp7qlq1"]
 
 [ext_resource type="Script" path="res://Scripts/Crazoonga.gd" id="1_na1ic"]
 [ext_resource type="AudioStream" uid="uid://ywm3hfex44xo" path="res://Audio/claw snap.ogg" id="2_abk3g"]
 [ext_resource type="AudioStream" uid="uid://bvqaieyhxj1lb" path="res://Audio/step2.ogg" id="3_8mi2w"]
 [ext_resource type="AudioStream" uid="uid://chro14f2ajclk" path="res://Audio/step1.ogg" id="4_l70o8"]
+[ext_resource type="AudioStream" uid="uid://cibh4r3vc02w1" path="res://Audio/EnemyHit.ogg" id="5_7swgi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8p8dy"]
 radius = 0.971998
@@ -926,6 +927,9 @@ stream = ExtResource("3_8mi2w")
 
 [node name="SideStep1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_l70o8")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7swgi")
 
 [node name="CrazoongaArea3D" type="Area3D" parent="."]
 collision_layer = 0

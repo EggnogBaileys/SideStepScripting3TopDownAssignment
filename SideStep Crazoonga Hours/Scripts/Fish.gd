@@ -55,6 +55,7 @@ func CalculateKnockback(claw):
 		return
 	$Knockback.start()
 
+	$Hit.play()
 	knockback = global_transform.origin - claw.global_transform.origin
 	knockback = knockback.normalized() * H_KNOCKBACK_FORCE
 

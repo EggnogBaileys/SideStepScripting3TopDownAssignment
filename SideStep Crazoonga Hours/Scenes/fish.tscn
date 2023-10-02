@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://0rx0lsvlnt8o"]
+[gd_scene load_steps=15 format=3 uid="uid://0rx0lsvlnt8o"]
 
 [ext_resource type="Script" path="res://Scripts/Fish.gd" id="1_awhbh"]
+[ext_resource type="AudioStream" uid="uid://cibh4r3vc02w1" path="res://Audio/EnemyHit.ogg" id="2_ro6q8"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xnd56"]
 points = PackedVector3Array(1.27151, 0.0175691, 2.23584, 1.39771, 0.150329, -4.97305, 1.26445, -1.17845, -0.454977, -1.39286, -0.115191, -4.97305, 0.466954, 1.08059, -0.72055, -1.12703, 0.416084, 2.73439, -0.994113, -0.513941, 2.46882, 1.10942, 1.09728, 0.118943, -1.39286, 0.150329, -4.97305, 0.733125, -0.380946, 3.26554, 0.59987, 0.416084, 3.26554, -1.88059, 0.0175691, -0.363345, 0.334037, -1.04545, -0.72055, 1.39771, -0.115191, -4.97305, -1.12703, 0.549079, 1.53807, -0.72828, -0.380946, 3.26554, 1.26445, -1.17845, 0.209371, -1.12703, -0.513941, 2.07005, -1.25995, -0.248186, 2.73439, -0.595364, 0.416084, 3.26554, -0.994113, -0.248186, -4.57427, -0.329869, -0.513941, 2.99997, 0.998619, -0.248186, -4.57427, -0.861197, 0.549079, 2.33562, -1.39286, 0.150329, 2.46882, 1.13901, 0.139884, 2.58451, 0.849276, 1.07913, 0.223062, 1.15119, -0.10576, 2.61192, 0.733125, 0.416084, 3.13317, 0.427923, -0.108688, 3.32365, -1.7205, -0.0892975, -0.72055, 0.92986, 1.04853, -0.491627)
@@ -287,6 +288,9 @@ shape = SubResource("CapsuleShape3D_46lpy")
 process_callback = 0
 wait_time = 0.3
 one_shot = true
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ro6q8")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="FlopTimer" to="." method="_on_flop_timer_timeout"]
