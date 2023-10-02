@@ -1,7 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsn5l2kp7qlq1"]
+[gd_scene load_steps=29 format=3 uid="uid://dsn5l2kp7qlq1"]
 
 [ext_resource type="Script" path="res://Scripts/Crazoonga.gd" id="1_na1ic"]
 [ext_resource type="AudioStream" uid="uid://ywm3hfex44xo" path="res://Audio/claw snap.ogg" id="2_abk3g"]
+[ext_resource type="AudioStream" uid="uid://bvqaieyhxj1lb" path="res://Audio/step2.ogg" id="3_8mi2w"]
+[ext_resource type="AudioStream" uid="uid://chro14f2ajclk" path="res://Audio/step1.ogg" id="4_l70o8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8p8dy"]
 radius = 0.971998
@@ -509,6 +511,30 @@ tracks/7/path = NodePath("../Skeleton3D:Leg D Mid L")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = PackedFloat32Array(0, 1, -0.0525001, 0.259031, 0.422174, 0.86713, 0.0333333, 1, -0.0525001, 0.259031, 0.422174, 0.86713, 0.0666667, 1, -0.0612012, 0.269006, 0.435349, 0.856949, 0.1, 1, -0.0797589, 0.289978, 0.462925, 0.833818, 0.166667, 1, -0.129935, 0.344532, 0.533783, 0.761242, 0.2, 1, -0.141, 0.356118, 0.548643, 0.743163, 0.233333, 1, -0.138259, 0.353263, 0.544989, 0.747714, 0.266667, 1, -0.125716, 0.34007, 0.528041, 0.767933, 0.3, 1, -0.106897, 0.319884, 0.501939, 0.796432, 0.333333, 1, -0.0851238, 0.295962, 0.470763, 0.826766, 0.366667, 1, -0.066755, 0.275326, 0.443677, 0.85023, 0.4, 1, -0.0563599, 0.263467, 0.428038, 0.862666, 0.416667, 1, -0.0525001, 0.259031, 0.422174, 0.86713)
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../SideStep1:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../SideStep2:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3ur6"]
 _data = {
@@ -599,7 +625,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 3.86986e-09, 1.19155e-07, -2.82013e-09, 0.999961, -0.00880854, -1.19185e-07, 0.00880854, 0.999961, 4.64368e-08, 1.00947, 6.6033e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(4.64368e-08, 1.00947, 6.6033e-09)
-bones/5/rotation = Quaternion(-0.140523, -0.0778563, -0.65408, 0.739169)
+bones/5/rotation = Quaternion(-0.122204, -0.110011, -0.589634, 0.790756)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Leg B End R"
 bones/6/parent = 5
@@ -627,7 +653,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(1, -0.000117895, -8.2346e-07, 0.000117893, 0.999871, 0.01605, -1.06885e-06, -0.01605, 0.999871, 5.73054e-08, 1.07994, -4.65661e-10)
 bones/9/enabled = true
 bones/9/position = Vector3(5.73054e-08, 1.07994, -4.65661e-10)
-bones/9/rotation = Quaternion(-0.15453, 0.0278103, -0.656992, 0.737366)
+bones/9/rotation = Quaternion(-0.147767, -0.030784, -0.604835, 0.781915)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Leg A End R"
 bones/10/parent = 9
@@ -683,7 +709,7 @@ bones/17/parent = 16
 bones/17/rest = Transform3D(1, -1.31329e-08, 1.31963e-10, 1.31332e-08, 0.999847, -0.0174704, 9.74947e-11, 0.0174704, 0.999847, 1.97654e-08, 0.980033, 3.79979e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(1.97654e-08, 0.980033, 3.79979e-08)
-bones/17/rotation = Quaternion(-0.137321, -0.223312, -0.619688, 0.739771)
+bones/17/rotation = Quaternion(-0.118778, -0.24011, -0.549652, 0.791278)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Leg C End R"
 bones/18/parent = 17
@@ -711,7 +737,7 @@ bones/21/parent = 20
 bones/21/rest = Transform3D(1, -6.92033e-09, 4.63158e-13, 6.92033e-09, 1, -7.84099e-05, 7.94647e-14, 7.84099e-05, 1, 9.9984e-08, 0.931091, 1.21972e-07)
 bones/21/enabled = true
 bones/21/position = Vector3(9.9984e-08, 0.931091, 1.21972e-07)
-bones/21/rotation = Quaternion(-0.143749, -0.358969, -0.552289, 0.738549)
+bones/21/rotation = Quaternion(-0.122507, -0.334449, -0.490036, 0.795613)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Leg D End R"
 bones/22/parent = 21
@@ -746,7 +772,7 @@ bones/26/parent = 25
 bones/26/rest = Transform3D(1, 2.93059e-09, -1.19215e-07, -3.98059e-09, 0.999961, -0.00880852, 1.19185e-07, 0.00880852, 0.999961, -8.86191e-08, 1.00947, 1.84499e-08)
 bones/26/enabled = true
 bones/26/position = Vector3(-8.86191e-08, 1.00947, 1.84499e-08)
-bones/26/rotation = Quaternion(-0.0567131, 0.110258, 0.486863, 0.864634)
+bones/26/rotation = Quaternion(-0.0757675, 0.103489, 0.526569, 0.840401)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Leg B End L"
 bones/27/parent = 26
@@ -774,7 +800,7 @@ bones/30/parent = 29
 bones/30/rest = Transform3D(1, 0.000117882, 8.24519e-07, -0.00011788, 0.999871, 0.01605, 1.06758e-06, -0.01605, 0.999871, -3.23635e-08, 1.07994, 3.25963e-08)
 bones/30/enabled = true
 bones/30/position = Vector3(-3.23635e-08, 1.07994, 3.25963e-08)
-bones/30/rotation = Quaternion(-0.108454, 0.0730555, 0.49838, 0.85704)
+bones/30/rotation = Quaternion(-0.119279, 0.0507623, 0.536208, 0.834072)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "Leg A End L"
 bones/31/parent = 30
@@ -830,7 +856,7 @@ bones/38/parent = 37
 bones/38/rest = Transform3D(1, 7.28387e-09, -2.97356e-11, -7.28327e-09, 0.999847, -0.0174704, -9.75214e-11, 0.0174704, 0.999847, -9.3804e-08, 0.980033, 9.60906e-08)
 bones/38/enabled = true
 bones/38/position = Vector3(-9.3804e-08, 0.980033, 9.60906e-08)
-bones/38/rotation = Quaternion(-0.0529675, 0.217181, 0.449471, 0.864871)
+bones/38/rotation = Quaternion(-0.0721267, 0.219538, 0.489682, 0.840721)
 bones/38/scale = Vector3(1, 1, 1)
 bones/39/name = "Leg C End L"
 bones/39/parent = 38
@@ -858,7 +884,7 @@ bones/42/parent = 41
 bones/42/rest = Transform3D(1, 5.0099e-09, -6.65222e-13, -5.0099e-09, 1, -7.83503e-05, 2.72695e-13, 7.83503e-05, 1, 1.48489e-08, 0.931091, 1.2348e-07)
 bones/42/enabled = true
 bones/42/position = Vector3(1.48489e-08, 0.931091, 1.2348e-07)
-bones/42/rotation = Quaternion(-0.0525001, 0.259031, 0.422174, 0.86713)
+bones/42/rotation = Quaternion(-0.0732038, 0.282618, 0.453266, 0.84221)
 bones/42/scale = Vector3(1, 1, 1)
 bones/43/name = "Leg D End L"
 bones/43/parent = 42
@@ -894,6 +920,12 @@ libraries = {
 
 [node name="ClawSnap" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_abk3g")
+
+[node name="SideStep2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8mi2w")
+
+[node name="SideStep1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l70o8")
 
 [node name="CrazoongaArea3D" type="Area3D" parent="."]
 collision_layer = 0

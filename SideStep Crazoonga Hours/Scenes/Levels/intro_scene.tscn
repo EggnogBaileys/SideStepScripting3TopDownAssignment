@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://eico640bnqcf"]
+[gd_scene load_steps=31 format=3 uid="uid://eico640bnqcf"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_0j77u"]
 [ext_resource type="Script" path="res://Scripts/LevelScripts/intro_scene.gd" id="1_s53rt"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="8_27l3i"]
 [ext_resource type="Script" path="res://Scripts/Pickup.gd" id="8_hm2j7"]
 [ext_resource type="PackedScene" uid="uid://dnqhbphlgpnlx" path="res://Models/Shell_A.glb" id="9_e6n80"]
+[ext_resource type="AudioStream" uid="uid://dndrj3d3bybwd" path="res://Audio/Fishy Bloop Bloop.mp3" id="12_aon4j"]
+[ext_resource type="AudioStream" uid="uid://ds4ugn7d4lemi" path="res://Audio/Ambient Waves.mp3" id="12_jv8g7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_44up5"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -149,11 +151,152 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_2poa0"]
+resource_name = "Cam3Zoom"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cameras/Camera3:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [75.0, 75.0, 20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cameras/Camera3:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 16.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cameras/Camera3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.333381, 0.0227342, -0.00589861), Vector3(-0.333381, 0.0227342, -0.00589861), Vector3(-0.479966, 0.0226893, -0.00523599)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cameras/Fishy name:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cameras/Fishy name:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossBattle:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ambience:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, -80.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ambience:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_neeam"]
+resource_name = "Cam3To4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cameras/Camera3:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cameras/Camera4:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RockWalls/StaticBody3D/CollisionShape3D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u70oc"]
 _data = {
 "Cam1To2": SubResource("Animation_p58sq"),
 "Cam2To1": SubResource("Animation_f4jj6"),
-"Cam2To3": SubResource("Animation_kaqq6")
+"Cam2To3": SubResource("Animation_kaqq6"),
+"Cam3To4": SubResource("Animation_neeam"),
+"Cam3Zoom": SubResource("Animation_2poa0")
 }
 
 [node name="Intro Scene" type="Node3D"]
@@ -165,14 +308,52 @@ script = ExtResource("1_s53rt")
 transform = Transform3D(0.999768, 0.00344458, 0.0212584, -0.0055738, 0.994878, 0.100928, -0.0208019, -0.101023, 0.994667, 11.0421, 5.66433, 55.5767)
 current = true
 
+[node name="Tutorial Title" type="Label3D" parent="Cameras/Camera1"]
+transform = Transform3D(1, -3.72529e-09, 2.42144e-08, -2.32831e-10, 1, 9.68575e-08, 0, 1.49012e-08, 1, -9.29869, 12.0908, -17.5547)
+billboard = 1
+text = "SIDESTEP: CRAZOONGA HOURS"
+font_size = 225
+outline_size = 75
+
+[node name="Tutorial Text" type="Label3D" parent="Cameras/Camera1"]
+transform = Transform3D(1, -7.45058e-09, 2.79397e-08, -2.32831e-10, 1.00001, 1.63913e-07, 0, 2.23517e-08, 1.00001, -9.29871, 9.20068, -17.5548)
+billboard = 1
+text = "- Up and Down arrows to sidestep
+- Left and Right arrows to rotate
+- Spacebar to swing claw and attack"
+font_size = 190
+outline_size = 60
+
 [node name="Camera2" type="Camera3D" parent="Cameras"]
-transform = Transform3D(-0.999768, 0.00997738, -0.0190851, 0.00557381, 0.975889, 0.218196, 0.020802, 0.218039, -0.975718, 5.8553, 6.9127, -13.4035)
+transform = Transform3D(-0.999768, 0.00953947, -0.0193078, 0.00557381, 0.980612, 0.19588, 0.020802, 0.195727, -0.980438, 6.03457, 6.76258, -14.8284)
+
+[node name="Tutorial Text2" type="Label3D" parent="Cameras/Camera2"]
+transform = Transform3D(-1, 1.44355e-08, 1.13621e-07, 3.95812e-08, 0.948906, 0.315585, -1.3411e-07, 0.315585, -0.948904, -0.900809, 6.00313, -14.1967)
+billboard = 1
+text = "Collect seashells for
+self defense.
+
+You can hold a maximum of three
+shells at once, and are vulnerable
+when you have none."
+font_size = 160
+outline_size = 50
+
+[node name="Fishy name" type="Label3D" parent="Cameras"]
+transform = Transform3D(-0.999784, 0.00137751, -0.0207495, 0.00464435, 0.987399, -0.158232, 0.0202698, -0.158295, -0.987191, 1.91675, 4.48116, -66.2538)
+billboard = 1
+modulate = Color(1, 1, 1, 0)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Fishy BloopBloop
+"
+font_size = 160
+outline_size = 50
 
 [node name="Camera3" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.999768, -0.00154172, 0.0214806, -0.00557381, 0.944925, 0.327241, -0.0208021, -0.327284, 0.944697, 6.40466, 16.2245, 10.5043)
+transform = Transform3D(0.999768, -0.00154172, 0.0214806, -0.00557381, 0.944925, 0.32724, -0.0208021, -0.327284, 0.944697, 6.40466, 16.2245, 10.5043)
 
 [node name="Camera4" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.271958, 0.501316, -0.821414, 0.0122097, 0.85172, 0.523854, 0.962232, -0.152496, 0.225511, -24.8723, 19.0423, -21.9201)
+transform = Transform3D(0.271958, 0.501316, -0.821414, 0.0122097, 0.85172, 0.523855, 0.962232, -0.152496, 0.225511, -24.8723, 19.0423, -21.9201)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.752535, -0.21957, -0.62087, -0.398127, 0.902673, 0.163326, 0.524582, 0.370093, -0.766711, -30.2135, 52.2636, -57.2962)
@@ -295,6 +476,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80351, 0, -0.176655)
 transform = Transform3D(0.999925, 0, 0.0122345, 0, 1, 0, -0.0122345, 0, 0.999925, 14.9064, -0.0927353, 51.5005)
 shape = SubResource("BoxShape3D_0ktq0")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RockWalls/StaticBody3D"]
+transform = Transform3D(0.999925, 0, 0.0122345, 0, 1, 0, -0.0122345, 0, 0.999925, 14.2432, -0.0927353, -2.70579)
+shape = SubResource("BoxShape3D_0ktq0")
+disabled = true
+
 [node name="Crazoonga" parent="." instance=ExtResource("6_1rgmm")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 12.3161, 0.469355, 45.072)
 
@@ -331,13 +517,23 @@ transform = Transform3D(4.65926, 0, 0, 0, 4.65926, 0, 0, 0, 4.65926, 26.4463, -4
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Fish" parent="Enemies" instance=ExtResource("8_27l3i")]
-transform = Transform3D(-0.516356, 0, 1.92707, 0, 1.99505, 0, -1.92707, 0, -0.516356, -0.240071, 0, -61.2662)
+transform = Transform3D(-0.163123, 0, 1.98837, 0, 1.99505, 0, -1.98837, 0, -0.163123, 2.84511, 0, -60.3853)
+visible = false
 health = 5
 
 [node name="CameraTransitions" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_u70oc")
 }
+
+[node name="BossBattle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_aon4j")
+volume_db = -15.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_jv8g7")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="area_entered" from="PickupShells/FirstShell" to="." method="_on_first_shell_area_entered"]
 
