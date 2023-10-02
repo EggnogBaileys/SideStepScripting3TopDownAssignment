@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpt1mjhf2ci0"]
+[gd_scene load_steps=19 format=3 uid="uid://bpt1mjhf2ci0"]
 
 [ext_resource type="PackedScene" uid="uid://b3qcr0txqdtok" path="res://Models/match.glb" id="1_yrcuw"]
 [ext_resource type="Texture2D" uid="uid://d173n8rkrexkf" path="res://Images/whitegradient.png" id="2_5isfc"]
@@ -11,12 +11,13 @@ blend_mode = 1
 cull_mode = 2
 no_depth_test = true
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.878431)
+albedo_color = Color(0.862745, 0, 0.364706, 1)
 albedo_texture = ExtResource("2_5isfc")
 albedo_texture_force_srgb = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
-billboard_mode = 2
+emission_enabled = true
+emission = Color(1, 0.529412, 0.184314, 1)
+emission_energy_multiplier = 1.8
+billboard_mode = 1
 billboard_keep_scale = true
 script = ExtResource("2_fcsu6")
 
@@ -68,7 +69,7 @@ angle_min = -14.1
 angle_max = 27.5
 angle_curve = SubResource("CurveTexture_263qy")
 scale_curve = SubResource("CurveXYZTexture_844qe")
-color = Color(1, 1, 1, 0.827451)
+color = Color(0.796078, 0.494118, 0.290196, 0.827451)
 color_ramp = SubResource("GradientTexture1D_lyumo")
 color_initial_ramp = SubResource("GradientTexture1D_ytj72")
 hue_variation_curve = SubResource("CurveTexture_itnk2")
@@ -79,6 +80,9 @@ turbulence_influence_min = 0.76
 turbulence_influence_max = 0.95
 
 [sub_resource type="QuadMesh" id="QuadMesh_co6tn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_egnm7"]
+radius = 2.51283
 
 [node name="match" instance=ExtResource("1_yrcuw")]
 
@@ -91,3 +95,16 @@ randomness = 0.07
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nj0ru")
 draw_pass_1 = SubResource("QuadMesh_co6tn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24259, 0)
+light_color = Color(0.717647, 0.223529, 0.14902, 1)
+light_size = 0.176
+omni_range = 9.003
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("SphereShape3D_egnm7")

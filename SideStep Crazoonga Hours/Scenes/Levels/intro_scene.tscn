@@ -20,21 +20,23 @@ sky_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
 ground_bottom_color = Color(0.266667, 0.227451, 0.180392, 1)
 ground_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
 
-[sub_resource type="Sky" id="Sky_oart6"]
+[sub_resource type="Sky" id="Sky_lvih5"]
 sky_material = SubResource("ProceduralSkyMaterial_44up5")
 
 [sub_resource type="Environment" id="Environment_yk1mq"]
 background_mode = 2
-background_energy_multiplier = 0.9
-sky = SubResource("Sky_oart6")
+background_color = Color(0.603922, 0.643137, 0.858824, 1)
+background_energy_multiplier = 0.7
+sky = SubResource("Sky_lvih5")
 ambient_light_color = Color(0, 0.737255, 0.937255, 1)
 ambient_light_energy = 2.58
 tonemap_mode = 2
 glow_enabled = true
 fog_density = 0.001
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.007
-volumetric_fog_emission = Color(0.423529, 0.458824, 0.662745, 1)
+volumetric_fog_density = 0.008
+volumetric_fog_albedo = Color(0.478431, 0.478431, 0.478431, 1)
+volumetric_fog_emission = Color(0.34902, 0.403922, 0.654902, 1)
 volumetric_fog_length = 50.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vypwb"]
@@ -317,14 +319,14 @@ transform = Transform3D(0.999768, 0.00344458, 0.0212584, -0.0055738, 0.994878, 0
 current = true
 
 [node name="Tutorial Title" type="Label3D" parent="Cameras/Camera1"]
-transform = Transform3D(1, -3.72529e-09, 2.42144e-08, -2.32831e-10, 1, 9.68575e-08, 0, 1.49012e-08, 1, -9.29869, 12.0908, -17.5547)
+transform = Transform3D(1, -4.42378e-09, 2.6077e-08, -2.32831e-10, 1, 1.04308e-07, 0, 7.45058e-09, 1, -9.29869, 12.0908, -17.5547)
 billboard = 1
 text = "SIDESTEP: CRAZOONGA HOURS"
 font_size = 225
 outline_size = 75
 
 [node name="Tutorial Text" type="Label3D" parent="Cameras/Camera1"]
-transform = Transform3D(1, -7.45058e-09, 2.79397e-08, -2.32831e-10, 1.00001, 1.63913e-07, 0, 2.23517e-08, 1.00001, -9.29871, 9.20068, -17.5548)
+transform = Transform3D(1, -7.91624e-09, 2.98023e-08, -2.32831e-10, 1.00001, 1.71363e-07, 0, 1.49012e-08, 1.00001, -9.29871, 9.20068, -17.5548)
 billboard = 1
 text = "- Up and Down arrows to sidestep
 - Left and Right arrows to rotate

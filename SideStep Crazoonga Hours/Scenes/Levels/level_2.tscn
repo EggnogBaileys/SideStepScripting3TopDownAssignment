@@ -1,0 +1,166 @@
+[gd_scene load_steps=17 format=3 uid="uid://dcux6vcsv565i"]
+
+[ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_athqm"]
+[ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_kl4dj"]
+[ext_resource type="PackedScene" uid="uid://bpt1mjhf2ci0" path="res://Materials/Particles/match.tscn" id="1_yskhg"]
+[ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/Rocks/rock_boulder_2.tscn" id="2_kqy60"]
+[ext_resource type="PackedScene" uid="uid://bg5txh1316fg1" path="res://Environment/Rocks/rock_boulder.tscn" id="3_yvteh"]
+[ext_resource type="PackedScene" uid="uid://508jx6t38xmk" path="res://Environment/Rocks/rock_boulder_3.tscn" id="4_te3aq"]
+[ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="5_qt2ae"]
+[ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_axfa3"]
+[ext_resource type="PackedScene" uid="uid://b7jysigrmp5h2" path="res://Environment/Logs/log_2_stack.tscn" id="8_ay7x8"]
+[ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="9_7a18d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivb1t"]
+sky_top_color = Color(0.407843, 0.556863, 1, 1)
+sky_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
+ground_bottom_color = Color(0.266667, 0.227451, 0.180392, 1)
+ground_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
+
+[sub_resource type="Sky" id="Sky_oart6"]
+sky_material = SubResource("ProceduralSkyMaterial_ivb1t")
+
+[sub_resource type="Environment" id="Environment_qpi21"]
+background_mode = 1
+background_energy_multiplier = 0.7
+sky = SubResource("Sky_oart6")
+ambient_light_source = 3
+ambient_light_energy = 2.58
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+fog_density = 0.001
+volumetric_fog_density = 0.008
+volumetric_fog_albedo = Color(0.478431, 0.478431, 0.478431, 1)
+volumetric_fog_emission = Color(0.34902, 0.403922, 0.654902, 1)
+volumetric_fog_length = 50.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b4on0"]
+material = ExtResource("1_athqm")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_u6573"]
+vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axkl1"]
+size = Vector3(129.762, 1, 285.005)
+
+[node name="Level2" type="Node3D"]
+
+[node name="match" parent="." instance=ExtResource("1_yskhg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7284, 0, -66.9974)
+
+[node name="Crazoonga" parent="." instance=ExtResource("1_kl4dj")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1.82971, 0, -109.063)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.752535, -0.21957, -0.620871, -0.398127, 0.902674, 0.163326, 0.524582, 0.370093, -0.76671, -34.0588, 53.2751, -62.0447)
+light_color = Color(0.227451, 0.25098, 0.588235, 1)
+light_energy = 0.8
+light_angular_distance = 42.72
+shadow_enabled = true
+shadow_normal_bias = 0.865
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qpi21")
+
+[node name="Beach Ground" type="StaticBody3D" parent="."]
+
+[node name="Beach" type="MeshInstance3D" parent="Beach Ground"]
+transform = Transform3D(59.6041, 0, 0, 0, 59.6041, 0, 0, 0, 130.214, 0, 0, 1.22964)
+material_override = ExtResource("1_athqm")
+mesh = SubResource("PlaneMesh_b4on0")
+skeleton = NodePath("../..")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Beach Ground/Beach"]
+visible = false
+navigation_mesh = SubResource("NavigationMesh_u6573")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beach Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_axkl1")
+
+[node name="RockWalls" type="Node3D" parent="."]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -3.29992, 0, -64.3109)
+
+[node name="rock_pillar" parent="RockWalls" instance=ExtResource("5_qt2ae")]
+
+[node name="rock_boulder" parent="RockWalls" instance=ExtResource("3_yvteh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43178, 0, 56.8107)
+
+[node name="rock_boulder2" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -26.5945, 0, 46.2769)
+
+[node name="rock_boulder4" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(0.258819, 0, 0.965925, 0, 1, 0, -0.965925, 0, 0.258819, -10.3918, 0, 55.2214)
+
+[node name="rock_boulder13" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(-0.385632, 0, 0.922652, 0, 1, 0, -0.922652, 0, -0.385632, -45.1637, 0, 31.5829)
+
+[node name="rock_boulder6" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(0.258819, 0, 0.965925, 0, 1, 0, -0.965925, 0, 0.258819, 24.69, 0, 42.0868)
+
+[node name="rock_boulder19" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(-0.834126, 0, 0.551573, 0, 1, 0, -0.551573, 0, -0.834126, -24.9028, 0, -45.3668)
+
+[node name="rock_boulder10" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(0.965925, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965925, 46.4653, 0, 0.79126)
+
+[node name="rock_boulder11" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(0.995811, 0, -0.0914323, 0, 1, 0, 0.0914323, 0, 0.995811, -3.39788, 0, -14.4492)
+
+[node name="rock_boulder7" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 40.973, 0, 35.8659)
+
+[node name="rock_boulder8" parent="RockWalls" instance=ExtResource("2_kqy60")]
+transform = Transform3D(-0.999999, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, -0.999999, 48.2663, 0, 18.1744)
+
+[node name="rock_boulder3" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -25.8369, 0, 30.0662)
+
+[node name="rock_boulder12" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.237126, 0, 0.971479, 0, 1, 0, -0.971479, 0, -0.237126, -30.1849, 0, 20.4549)
+
+[node name="rock_boulder16" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(1.1737, 0, -0.400773, 0, 1.208, 0, 0.285814, 0, 1.64578, -62.4552, 0, 6.0567)
+
+[node name="rock_boulder9" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 33.157, 0, 11.9681)
+
+[node name="rock_boulder5" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 10.7983, 0, 47.9621)
+
+[node name="rock_boulder14" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.724232, 0, -0.689556, 0, 1, 0, 0.689556, 0, -0.724232, -62.6587, 0, 28.6218)
+
+[node name="rock_boulder15" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.962706, 0, 0.27055, 0, 1, 0, -0.27055, 0, -0.962706, -53.5822, 0, -24.648)
+
+[node name="rock_boulder20" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.419563, 0, -0.907726, 0, 1, 0, 0.907726, 0, -0.419563, -11.8474, 0, -43.6773)
+
+[node name="rock_boulder17" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.597891, 0, 0.801577, 0, 1, 0, -0.801577, 0, -0.597891, -41.0785, 0, -31.6656)
+
+[node name="rock_boulder18" parent="RockWalls" instance=ExtResource("4_te3aq")]
+transform = Transform3D(-0.960138, 0, 0.279527, 0, 1, 0, -0.279527, 0, -0.960138, -0.51981, 0, -32.0124)
+
+[node name="rock_whole" parent="RockWalls" instance=ExtResource("6_axfa3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8873, 0, 7.62939e-06)
+
+[node name="Wood" type="Node3D" parent="."]
+
+[node name="Log_2stack" parent="Wood" instance=ExtResource("8_ay7x8")]
+transform = Transform3D(-2.15252, 0, -11.4687, 0, 11.6689, 0, 11.4687, 0, -2.15252, -18.415, 0, -69.3008)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Fish" parent="." instance=ExtResource("9_7a18d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5469, 0, -51.3937)
+
+[node name="Fish2" parent="." instance=ExtResource("9_7a18d")]
+transform = Transform3D(-0.811961, 0, 0.583711, 0, 1, 0, -0.583711, 0, -0.811961, 33.7658, 0, -80.3055)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_color = Color(0.329412, 0.329412, 0.647059, 1)
+light_energy = 4.232
