@@ -16,7 +16,7 @@ var currentCam = 1
 @export var dialogue: NodePath
 
 func _ready():
-	$"Cameras/Camera2/Tutorial Text2".hide()
+	$"UI/Tutorial Text2".hide()
 
 func _process(_delta):
 	
@@ -26,25 +26,26 @@ func _process(_delta):
 		$BossBattle.stop()
 		$"Cameras/Camera4/You Win".show()
 		await get_tree().create_timer(3.0).timeout
+		get_tree().change_scene_to_file("res://Scenes/Levels/level_2.tscn")
 		# Load next stage
 	
 	if currentProgress < 2:
 		if player.position.z < 15 and currentCam == 1:
 			currentCam = 2
 			if currentProgress == 0:
-				$"Cameras/Camera2/Tutorial Text2".show()
-			$"Cameras/Camera1/Tutorial Text".hide()
-			$"Cameras/Camera1/Tutorial Title".hide()
+				$"UI/Tutorial Text2".show()
+			$"UI/Tutorial Text".hide()
+			$"UI/Tutorial Title".hide()
 			camTransitions.play("Cam1To2")
 		elif player.position.z > 16 and currentCam == 2:
 			currentCam = 1
-			$"Cameras/Camera2/Tutorial Text2".hide()
+			$"UI/Tutorial Text2".hide()
 			camTransitions.play("Cam2To1")
 			
 	if currentProgress == 1:
 		if player.position.z < -5 and currentCam == 2:
 			currentCam = 3 
-			$"Cameras/Camera2/Tutorial Text2".hide()
+			$"UI/Tutorial Text2".hide()
 			fish.show()
 			camTransitions.play("Cam2To3")
 			player.in_cutscene = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcux6vcsv565i"]
+[gd_scene load_steps=23 format=3 uid="uid://dcux6vcsv565i"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_athqm"]
+[ext_resource type="Script" path="res://Scripts/LevelScripts/level_2.gd" id="1_jtvfh"]
 [ext_resource type="PackedScene" uid="uid://dsn5l2kp7qlq1" path="res://Scenes/crazoonga.tscn" id="1_kl4dj"]
 [ext_resource type="PackedScene" uid="uid://bpt1mjhf2ci0" path="res://Materials/Particles/match.tscn" id="1_yskhg"]
 [ext_resource type="PackedScene" uid="uid://bc2xdohemy1hw" path="res://Environment/Rocks/rock_boulder_2.tscn" id="2_kqy60"]
@@ -10,6 +11,68 @@
 [ext_resource type="PackedScene" uid="uid://4i5uw8164aef" path="res://Environment/Rocks/rock_whole.tscn" id="6_axfa3"]
 [ext_resource type="PackedScene" uid="uid://b7jysigrmp5h2" path="res://Environment/Logs/log_2_stack.tscn" id="8_ay7x8"]
 [ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="9_7a18d"]
+[ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="11_rer4p"]
+[ext_resource type="AudioStream" uid="uid://cmoeauwfns627" path="res://Audio/Darkness Creeps.ogg" id="12_up6uk"]
+
+[sub_resource type="Animation" id="Animation_odocs"]
+resource_name = "Cam1To2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_sgf0e"]
+resource_name = "Cam2To1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera1:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_378wh"]
+_data = {
+"Cam1To2": SubResource("Animation_odocs"),
+"Cam2To1": SubResource("Animation_sgf0e")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivb1t"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -29,7 +92,10 @@ ambient_light_energy = 2.58
 reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
-fog_density = 0.001
+fog_enabled = true
+fog_light_color = Color(0.0901961, 0.101961, 0.133333, 1)
+fog_light_energy = 0.7
+fog_density = 0.053
 volumetric_fog_density = 0.008
 volumetric_fog_albedo = Color(0.478431, 0.478431, 0.478431, 1)
 volumetric_fog_emission = Color(0.34902, 0.403922, 0.654902, 1)
@@ -46,6 +112,21 @@ polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 size = Vector3(129.762, 1, 285.005)
 
 [node name="Level2" type="Node3D"]
+script = ExtResource("1_jtvfh")
+
+[node name="Cameras" type="Node3D" parent="."]
+
+[node name="Camera1" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.989549, -1.86265e-09, -0.144201, 0.0501488, 0.93758, 0.344136, 0.1352, -0.34777, 0.927781, -5.41688, 12.2674, -79.8383)
+current = true
+
+[node name="Camera2" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-0.879748, -0.252065, 0.40312, 0.01042, 0.837464, 0.546393, -0.475325, 0.484889, -0.734131, -9.72113, 20.826, -98.4056)
+
+[node name="CameraTransitions" type="AnimationPlayer" parent="Cameras"]
+libraries = {
+"": SubResource("AnimationLibrary_378wh")
+}
 
 [node name="match" parent="." instance=ExtResource("1_yskhg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7284, 0, -66.9974)
@@ -153,6 +234,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8873, 0, 7.62939e-06)
 [node name="Log_2stack" parent="Wood" instance=ExtResource("8_ay7x8")]
 transform = Transform3D(-2.15252, 0, -11.4687, 0, 11.6689, 0, 11.4687, 0, -2.15252, -18.415, 0, -69.3008)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Wood/Log_2stack"]
+transform = Transform3D(0.0856975, 1.86265e-09, 1.11022e-16, 0, -3.74596e-09, 0.0856979, 1.86265e-09, -0.0856975, -3.74594e-09, 0, 1.82577, 0)
+light_energy = 6.98
+spot_range = 25.3078
+
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Fish" parent="." instance=ExtResource("9_7a18d")]
@@ -164,3 +250,34 @@ transform = Transform3D(-0.811961, 0, 0.583711, 0, 1, 0, -0.583711, 0, -0.811961
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 light_color = Color(0.329412, 0.329412, 0.647059, 1)
 light_energy = 4.232
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="Area3D" parent="Pickups" instance=ExtResource("11_rer4p")]
+transform = Transform3D(6.7457, 0, 0, 0, 6.7457, 0, 0, 0, 6.7457, -43.1197, 0, -78.7565)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pickups/Area3D"]
+transform = Transform3D(0.148243, 0, 0, 0, 0.148243, 0, 0, 0, 0.148243, 0, 0.348574, 0)
+light_color = Color(0.976471, 0.941176, 1, 1)
+light_energy = 0.4
+
+[node name="Area3D3" parent="Pickups" instance=ExtResource("11_rer4p")]
+transform = Transform3D(6.7457, 0, 0, 0, 6.7457, 0, 0, 0, 6.7457, 21.5425, 0, -38.0667)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pickups/Area3D3"]
+transform = Transform3D(0.148243, 0, 0, 0, 0.148243, 0, 0, 0, 0.148243, 0, 0.348574, 0)
+light_color = Color(0.976471, 0.941176, 1, 1)
+light_energy = 0.4
+
+[node name="Area3D2" parent="Pickups" instance=ExtResource("11_rer4p")]
+transform = Transform3D(6.7457, 0, 0, 0, 6.7457, 0, 0, 0, 6.7457, -36.328, 0, -89.296)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pickups/Area3D2"]
+transform = Transform3D(0.148243, 0, 0, 0, 0.148243, 0, 0, 0, 0.148243, 0, 0.348574, 0)
+light_color = Color(0.976471, 0.941176, 1, 1)
+light_energy = 0.4
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_up6uk")
+volume_db = -4.0
+autoplay = true

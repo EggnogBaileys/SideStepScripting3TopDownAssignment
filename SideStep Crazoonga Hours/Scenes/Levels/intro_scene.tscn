@@ -34,7 +34,7 @@ tonemap_mode = 2
 glow_enabled = true
 fog_density = 0.001
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.008
+volumetric_fog_density = 0.075
 volumetric_fog_albedo = Color(0.478431, 0.478431, 0.478431, 1)
 volumetric_fog_emission = Color(0.34902, 0.403922, 0.654902, 1)
 volumetric_fog_length = 50.0
@@ -299,6 +299,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.075, 0.075, 0.075, 0.01]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u70oc"]
 _data = {
@@ -318,36 +330,8 @@ script = ExtResource("1_s53rt")
 transform = Transform3D(0.999768, 0.00344458, 0.0212584, -0.0055738, 0.994878, 0.100928, -0.0208019, -0.101023, 0.994667, 11.0421, 5.66433, 55.5767)
 current = true
 
-[node name="Tutorial Title" type="Label3D" parent="Cameras/Camera1"]
-transform = Transform3D(1, -4.42378e-09, 2.6077e-08, -2.32831e-10, 1, 1.04308e-07, 0, 7.45058e-09, 1, -9.29869, 12.0908, -17.5547)
-billboard = 1
-text = "SIDESTEP: CRAZOONGA HOURS"
-font_size = 225
-outline_size = 75
-
-[node name="Tutorial Text" type="Label3D" parent="Cameras/Camera1"]
-transform = Transform3D(1, -7.91624e-09, 2.98023e-08, -2.32831e-10, 1.00001, 1.71363e-07, 0, 1.49012e-08, 1.00001, -9.29871, 9.20068, -17.5548)
-billboard = 1
-text = "- Up and Down arrows to sidestep
-- Left and Right arrows to rotate
-- Spacebar to swing claw and attack"
-font_size = 190
-outline_size = 60
-
 [node name="Camera2" type="Camera3D" parent="Cameras"]
 transform = Transform3D(-0.999768, 0.00953947, -0.0193078, 0.00557381, 0.980612, 0.19588, 0.020802, 0.195727, -0.980438, 6.03457, 6.76258, -14.8284)
-
-[node name="Tutorial Text2" type="Label3D" parent="Cameras/Camera2"]
-transform = Transform3D(-1, 1.44355e-08, 1.13621e-07, 3.95812e-08, 0.948906, 0.315585, -1.3411e-07, 0.315585, -0.948904, -0.900809, 6.00313, -14.1967)
-billboard = 1
-text = "Collect seashells for
-self defense.
-
-You can hold a maximum of three
-shells at once, and are vulnerable
-when you have none."
-font_size = 160
-outline_size = 50
 
 [node name="Fishy name" type="Label3D" parent="Cameras"]
 transform = Transform3D(-0.999784, 0.00137751, -0.0207495, 0.00464435, 0.987399, -0.158232, 0.0202698, -0.158295, -0.987191, 1.91675, 4.48116, -66.2538)
@@ -361,7 +345,7 @@ font_size = 160
 outline_size = 50
 
 [node name="Camera3" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.999768, -0.00154172, 0.0214806, -0.00557381, 0.944925, 0.32724, -0.0208021, -0.327284, 0.944697, 6.40466, 16.2245, 10.5043)
+transform = Transform3D(0.999768, -0.00154171, 0.0214806, -0.00557381, 0.944925, 0.32724, -0.0208021, -0.327284, 0.944697, 6.40466, 16.2245, 10.5043)
 
 [node name="Camera4" type="Camera3D" parent="Cameras"]
 transform = Transform3D(0.271958, 0.501316, -0.821414, 0.0122097, 0.85172, 0.523855, 0.962232, -0.152496, 0.225511, -24.8723, 19.0423, -21.9201)
@@ -554,6 +538,50 @@ volume_db = -15.0
 stream = ExtResource("12_jv8g7")
 volume_db = -20.0
 autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Tutorial Title" type="Label" parent="UI"]
+offset_left = 78.0
+offset_top = 59.0
+offset_right = 857.0
+offset_bottom = 134.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 52
+text = "SIDESTEP: CRAZOONGA HOURS"
+
+[node name="Tutorial Text" type="Label" parent="UI"]
+offset_left = 103.0
+offset_top = 155.0
+offset_right = 823.0
+offset_bottom = 338.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 19
+theme_override_font_sizes/font_size = 42
+text = "- Up and Down arrows to sidestep
+- Left and Right arrows to rotate
+- Spacebar to swing claw and attack"
+
+[node name="Tutorial Text2" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -389.0
+offset_top = 56.0
+offset_right = 299.0
+offset_bottom = 422.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 42
+text = "Collect seashells for
+self defense.
+
+You can hold a maximum of three
+shells at once, and are vulnerable
+when you have none."
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="PickupShells/FirstShell" to="." method="_on_first_shell_area_entered"]
 

@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7jysigrmp5h2"]
+[gd_scene load_steps=4 format=3 uid="uid://b7jysigrmp5h2"]
 
 [ext_resource type="PackedScene" uid="uid://s24ncnk8twpt" path="res://Models/Log_2stack.glb" id="1_xasih"]
 [ext_resource type="Material" uid="uid://d3ol8hs3vyutl" path="res://Materials/Wood.tres" id="2_11hd4"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ooua"]
+points = PackedVector3Array(0.961328, 0.736569, -0.209705, -0.217955, -0.26538, -1.00545, -0.259482, 0.808385, -0.14327, 0.239419, -0.99261, -0.126642, 0.146409, -0.434121, -1.21219, 1.35603, 0.465213, -0.126767, 0.146409, 0.930426, -0.498865, -0.0201877, -0.808991, 0.00693951, 1.07684, 0.744263, -0.467867, 1.07684, 0.341039, 0.0284714, 0.0170816, 0.856774, -0.0313955, -0.256691, 0.930426, -0.467867, -0.25445, -0.803259, -0.324748, 0.239419, -0.589192, -0.96408, -0.0396128, -0.930426, -0.592107, 1.20091, 0.49611, -0.498865, -0.0355364, -0.138927, -1.12146, 0.239419, 0.99261, -0.343876, -0.195684, -0.864065, -0.145597, 1.20091, 0.310142, -0.312878, 0.963125, 0.591734, -0.000796787, 0.0844551, -0.496305, -1.24331, 0.239419, -0.99261, -0.188762, -0.138428, -0.65758, -0.831548, 1.07923, 0.795515, -0.38649, 0.0533979, 0.806447, -0.592107, 0.0844551, -0.868436, -0.00265092, 0.239419, 0.99261, -0.436869, 0.0223407, -0.930426, -0.592107, 1.13879, 0.403029, -0.529862, 0.270476, -0.899528, -0.312753, 1.35603, 0.465213, -0.188762)
 
 [node name="Log_2stack" instance=ExtResource("1_xasih")]
 
 [node name="Log_2Stack" parent="." index="0"]
 material_override = ExtResource("2_11hd4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5ooua")
