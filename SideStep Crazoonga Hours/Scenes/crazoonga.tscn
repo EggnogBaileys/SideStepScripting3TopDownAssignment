@@ -488,7 +488,7 @@ tracks/2/keys = PackedFloat32Array(0, 1, 0.0390122, 0.0785491, -0.0139432, 0.996
 
 [sub_resource type="Animation" id="Animation_177x1"]
 resource_name = "Swing"
-length = 0.5
+length = 0.4
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1130,7 +1130,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClawSwing"]
 transform = Transform3D(0.945246, -2.19004e-08, 0.32636, 2.12631e-08, 1, 5.52019e-09, -0.32636, 1.72148e-09, 0.945246, 27.6966, 16.529, 3.86751)
 shape = SubResource("BoxShape3D_cqx6n")
-disabled = true
 
 [node name="Knockback" type="Timer" parent="."]
 process_callback = 0
