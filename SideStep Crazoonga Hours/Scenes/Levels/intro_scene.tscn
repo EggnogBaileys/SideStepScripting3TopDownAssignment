@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://eico640bnqcf"]
+[gd_scene load_steps=35 format=3 uid="uid://eico640bnqcf"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_0j77u"]
 [ext_resource type="Script" path="res://Scripts/LevelScripts/intro_scene.gd" id="1_s53rt"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://dndrj3d3bybwd" path="res://Audio/Fishy Bloop Bloop.mp3" id="12_aon4j"]
 [ext_resource type="AudioStream" uid="uid://bpkl4wwfroh7w" path="res://Audio/Defeat.ogg" id="12_gh0o2"]
 [ext_resource type="AudioStream" uid="uid://ds4ugn7d4lemi" path="res://Audio/Ambient Waves.mp3" id="12_jv8g7"]
+[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/you died.png" id="15_5bh3d"]
+[ext_resource type="Texture2D" uid="uid://ddbx46mw4lv0o" path="res://Images/crazoonga nooooo! dark souls.png" id="15_rnfpt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_44up5"]
 sky_top_color = Color(0.407843, 0.556863, 1, 1)
@@ -615,6 +617,21 @@ You can hold a maximum of three
 shells at once, and are vulnerable
 when you have none."
 horizontal_alignment = 1
+
+[node name="YouDied" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="CrazoongaNooooo!DarkSouls" type="Sprite2D" parent="YouDied"]
+visible = false
+modulate = Color(1, 1, 1, 0.427451)
+position = Vector2(980, 528)
+scale = Vector2(1.77687, 1.77687)
+texture = ExtResource("15_rnfpt")
+
+[node name="YouDied" type="Sprite2D" parent="YouDied"]
+position = Vector2(959, 567)
+scale = Vector2(3.19764, 3.19764)
+texture = ExtResource("15_5bh3d")
 
 [connection signal="area_entered" from="PickupShells/FirstShell" to="." method="_on_first_shell_area_entered"]
 

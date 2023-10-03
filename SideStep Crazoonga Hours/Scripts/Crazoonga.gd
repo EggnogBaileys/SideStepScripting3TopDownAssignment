@@ -36,8 +36,7 @@ var hasMatch = false
 # If shells are 0 and crab is hit, crab perishes.
 # With each shell found, crab can take one extra hit.
 # This is a setter. For each shell_count change, the function set_shell is run
-var shell_count := DEFAULT_SHELL_COUNT:
-	set = set_shells
+var shell_count = 0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Declare variables that are used every frame only once, for performance
@@ -100,11 +99,13 @@ func _on_contact(contact: Node3D):
 	if contact.is_in_group("firstShell"):
 		$ShellPickup.play()
 		shell_count += 1
+		show_shells()
 		contact.increment_progress()
 		return
 	if contact.is_in_group("shells"):
 		if shell_count < MAX_SHELL_COUNT:
 			shell_count += 1
+			show_shells()
 			$ShellPickup.play()
 			contact.picked_up()
 		return
@@ -112,11 +113,23 @@ func _on_contact(contact: Node3D):
 
 
 func take_damage(hazard: Node3D):
+	if shell_count < 0: 
+		return
+	
 	if not $Knockback.is_stopped():
 		return
 	$Knockback.start()
 
 	shell_count -= 1
+	
+	show_shells()
+	
+	if shell_count < 0:
+		in_cutscene = true 
+		rotate_z(180)
+		$Death.play()
+		await get_tree().create_timer(3.0).timeout
+		get_tree().reload_current_scene()
 	
 	$Hit.play()
 
@@ -146,6 +159,8 @@ func grabMatch():
 
 
 func show_shells():
+	if shell_count < 0:
+		return
 	# Mapping, all objects in the array have this function run on them.
 	# It can be a regular function, or a Callable,which is like
 	# a tiny function (like in this case).

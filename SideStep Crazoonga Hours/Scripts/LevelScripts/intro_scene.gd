@@ -57,7 +57,8 @@ func _process(_delta):
 			camTransitions.play("Cam3To4")
 			player.in_cutscene = false
 
-
+	if player.shell_count < 0:
+		$YouDied.show()
 
 func firstShellPicked():
 	currentProgress = 1 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dcux6vcsv565i"]
+[gd_scene load_steps=50 format=3 uid="uid://dcux6vcsv565i"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_athqm"]
 [ext_resource type="Script" path="res://Scripts/LevelScripts/level_2.gd" id="1_jtvfh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="9_7a18d"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="11_rer4p"]
 [ext_resource type="AudioStream" uid="uid://cmoeauwfns627" path="res://Audio/Darkness Creeps.ogg" id="12_up6uk"]
+[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/you died.png" id="16_bvjk5"]
 
 [sub_resource type="Animation" id="Animation_odocs"]
 resource_name = "Cam1To2"
@@ -636,5 +637,13 @@ theme_override_font_sizes/font_size = 110
 text = "Beachside Conquered
 - Next Stage -"
 horizontal_alignment = 1
+
+[node name="YouDied" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="YouDied" type="Sprite2D" parent="YouDied"]
+position = Vector2(959, 567)
+scale = Vector2(3.19764, 3.19764)
+texture = ExtResource("16_bvjk5")
 
 [editable path="Wood/Log_2stack"]
