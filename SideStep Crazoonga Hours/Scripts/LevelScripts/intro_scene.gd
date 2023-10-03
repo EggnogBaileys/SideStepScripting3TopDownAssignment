@@ -23,7 +23,7 @@ func _process(_delta):
 	if fish == null and fishDefeated == false:
 		fishDefeated = true
 		Singleton.enemiesDefeated += 1
-		$BossBattle.stop()
+		camTransitions.play("MusicFadeout")
 		$"Cameras/Camera4/You Win".show()
 		await get_tree().create_timer(3.0).timeout
 		get_tree().change_scene_to_file("res://Scenes/Levels/level_2.tscn")

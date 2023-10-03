@@ -3,6 +3,7 @@ extends Node3D
 @onready var camTransitions = $Cameras/CameraTransitions
 @onready var player = $Crazoonga
 
+var isLevelDone = false
 var fish3spawned: bool = false
 
 #@onready var fish = $Enemies/Fish
@@ -46,8 +47,12 @@ func _process(_delta):
 		currentCam = 3
 		camTransitions.play("Cam4To3")
 		
-	if player.position.z > -30:
-		print("level done")
+	if player.position.z > -30 and not isLevelDone:
+		isLevelDone = true
+		$EndScreenUI.show()
+		await get_tree().create_timer(3.0).timeout
+		get_tree().change_scene_to_file("res://Scenes/Levels/level_2.tscn")
+		
 			
 
 

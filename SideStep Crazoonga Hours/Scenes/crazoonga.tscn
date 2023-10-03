@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dsn5l2kp7qlq1"]
+[gd_scene load_steps=52 format=3 uid="uid://dsn5l2kp7qlq1"]
 
 [ext_resource type="Script" path="res://Scripts/Crazoonga.gd" id="1_na1ic"]
 [ext_resource type="AudioStream" uid="uid://ywm3hfex44xo" path="res://Audio/claw snap.ogg" id="2_abk3g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Gradient" uid="uid://byunn3d2j2ccv" path="res://Materials/Particles/whitefade.tres" id="4_77omx"]
 [ext_resource type="AudioStream" uid="uid://chro14f2ajclk" path="res://Audio/step1.ogg" id="4_l70o8"]
 [ext_resource type="AudioStream" uid="uid://cibh4r3vc02w1" path="res://Audio/EnemyHit.ogg" id="5_7swgi"]
+[ext_resource type="AudioStream" uid="uid://dil3pw5n3x3le" path="res://Audio/shellpickup.ogg" id="9_4j8ty"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl1ur"]
 resource_name = "Wood"
@@ -1134,6 +1135,10 @@ disabled = true
 process_callback = 0
 wait_time = 0.3
 one_shot = true
+
+[node name="ShellPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4j8ty")
+volume_db = -2.0
 
 [connection signal="ready" from="." to="." method="show_shells"]
 [connection signal="animation_finished" from="Claw" to="." method="_on_claw_animation_finished"]

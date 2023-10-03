@@ -42,10 +42,12 @@ func _on_flop_timer_timeout():
 
 
 func _on_hurtbox_area_entered(area):
+	$Hit.play()
 	print_debug("Ouch")
 	CalculateKnockback(area)
 	health -= 1
 	if health < 1:
+		await get_tree().create_timer(0.25).timeout
 		queue_free()
 
 
@@ -55,7 +57,6 @@ func CalculateKnockback(claw):
 		return
 	$Knockback.start()
 
-	$Hit.play()
 	knockback = global_transform.origin - claw.global_transform.origin
 	knockback = knockback.normalized() * H_KNOCKBACK_FORCE
 

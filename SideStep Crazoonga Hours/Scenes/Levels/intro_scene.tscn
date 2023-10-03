@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://eico640bnqcf"]
+[gd_scene load_steps=33 format=3 uid="uid://eico640bnqcf"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_0j77u"]
 [ext_resource type="Script" path="res://Scripts/LevelScripts/intro_scene.gd" id="1_s53rt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Pickup.gd" id="8_hm2j7"]
 [ext_resource type="PackedScene" uid="uid://dnqhbphlgpnlx" path="res://Models/Shell_A.glb" id="9_e6n80"]
 [ext_resource type="AudioStream" uid="uid://dndrj3d3bybwd" path="res://Audio/Fishy Bloop Bloop.mp3" id="12_aon4j"]
+[ext_resource type="AudioStream" uid="uid://bpkl4wwfroh7w" path="res://Audio/Defeat.ogg" id="12_gh0o2"]
 [ext_resource type="AudioStream" uid="uid://ds4ugn7d4lemi" path="res://Audio/Ambient Waves.mp3" id="12_jv8g7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_44up5"]
@@ -312,13 +313,42 @@ tracks/8/keys = {
 "values": [0.065, 0.075, 0.065, 0.01]
 }
 
+[sub_resource type="Animation" id="Animation_ab8tq"]
+resource_name = "MusicFadeout"
+length = 2.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossBattle:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-15.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraTransitions/Defeat:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u70oc"]
 _data = {
 "Cam1To2": SubResource("Animation_p58sq"),
 "Cam2To1": SubResource("Animation_f4jj6"),
 "Cam2To3": SubResource("Animation_kaqq6"),
 "Cam3To4": SubResource("Animation_neeam"),
-"Cam3Zoom": SubResource("Animation_2poa0")
+"Cam3Zoom": SubResource("Animation_2poa0"),
+"MusicFadeout": SubResource("Animation_ab8tq")
 }
 
 [node name="Intro Scene" type="Node3D"]
@@ -354,7 +384,7 @@ transform = Transform3D(0.271958, 0.501316, -0.821414, 0.0122097, 0.85172, 0.523
 transform = Transform3D(1, 1.49012e-08, -1.04308e-07, 0, 1, -4.24683e-07, 0, 1.11759e-08, 1, -0.0339146, 0.536369, -2.62446)
 visible = false
 billboard = 1
-text = "Enemies Defeated 
+text = "Beachside Conquered
 - Next Stage -"
 font_size = 80
 outline_size = 28
@@ -529,6 +559,9 @@ health = 5
 libraries = {
 "": SubResource("AnimationLibrary_u70oc")
 }
+
+[node name="Defeat" type="AudioStreamPlayer" parent="CameraTransitions"]
+stream = ExtResource("12_gh0o2")
 
 [node name="BossBattle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_aon4j")

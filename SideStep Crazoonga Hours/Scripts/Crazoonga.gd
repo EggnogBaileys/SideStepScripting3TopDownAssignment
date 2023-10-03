@@ -95,15 +95,17 @@ func _on_contact(contact: Node3D):
 		return
 	if contact.is_in_group("log"):
 		if hasMatch:
-			contact.get_parent().queue_free()
+			contact.get_parent().animationPlayer.play("Burn")
 		return
 	if contact.is_in_group("firstShell"):
+		$ShellPickup.play()
 		shell_count += 1
 		contact.increment_progress()
 		return
 	if contact.is_in_group("shells"):
 		if shell_count < MAX_SHELL_COUNT:
 			shell_count += 1
+			$ShellPickup.play()
 			contact.picked_up()
 		return
 	take_damage(contact)
