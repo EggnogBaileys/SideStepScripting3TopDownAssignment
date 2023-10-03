@@ -24,5 +24,20 @@ func _process(_delta):
 	elif player.position.z < -91 and currentCam == 2:
 		currentCam = 1
 		camTransitions.play("Cam2To1")
+		
+	if player.position.x > 5 and currentCam < 3:
+		currentCam = 3
+		camTransitions.play("Cam2To3")
+	elif player.position.x < 5 and currentCam == 3:
+		currentCam = 2
+		camTransitions.play("Cam3To2")
+	elif player.position.z > -46 and currentCam == 3:
+		currentCam = 4 
+		camTransitions.play("Cam3To4")
+	elif player.position.z < -47 and currentCam == 4:
+		currentCam = 3
+		camTransitions.play("Cam4To3")
+		
+		
 			
 

@@ -30,6 +30,8 @@ enum Shell {
 @export var walkSpeed = DEFAULT_WALK_SPEED
 @export var turnSpeed = DEFAULT_TURN_SPEED
 
+@onready var matchStick = $match
+
 # If shells are 0 and crab is hit, crab perishes.
 # With each shell found, crab can take one extra hit.
 # This is a setter. For each shell_count change, the function set_shell is run
@@ -86,6 +88,10 @@ func _on_claw_animation_finished(anim_name):
 
 
 func _on_contact(contact: Node3D):
+	if contact.is_in_group("match"):
+		grabMatch()
+		contact.get_parent().queue_free()
+		return
 	if contact.is_in_group("firstShell"):
 		shell_count += 1
 		contact.increment_progress()
@@ -125,6 +131,10 @@ func set_shells(shells: int):
 	shell_count = clamp(shells, MIN_SHELL_COUNT, MAX_SHELL_COUNT)
 	show_shells()
 	print_debug("Shell count: ", shell_count)
+
+func grabMatch():
+	matchStick.show()
+	# enable collision through animation
 
 
 func show_shells():

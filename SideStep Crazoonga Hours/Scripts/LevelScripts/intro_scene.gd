@@ -30,14 +30,14 @@ func _process(_delta):
 		# Load next stage
 	
 	if currentProgress < 2:
-		if player.position.z < 15 and currentCam == 1:
+		if player.position.z < 17 and currentCam == 1:
 			currentCam = 2
 			if currentProgress == 0:
 				$"UI/Tutorial Text2".show()
 			$"UI/Tutorial Text".hide()
 			$"UI/Tutorial Title".hide()
 			camTransitions.play("Cam1To2")
-		elif player.position.z > 16 and currentCam == 2:
+		elif player.position.z > 18 and currentCam == 2:
 			currentCam = 1
 			$"UI/Tutorial Text2".hide()
 			camTransitions.play("Cam2To1")
