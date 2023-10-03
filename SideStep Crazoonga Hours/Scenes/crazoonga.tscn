@@ -727,7 +727,8 @@ process_material = SubResource("ParticleProcessMaterial_nj0ru")
 draw_pass_1 = SubResource("QuadMesh_co6tn")
 
 [node name="MatchBurn" type="Area3D" parent="match"]
-collision_layer = 32
+transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+collision_layer = 33
 
 [node name="MatchCollision" type="CollisionShape3D" parent="match/MatchBurn"]
 transform = Transform3D(3.73131, 1.13475e-14, -4.26326e-14, 1.13475e-14, 3.73131, 8.52651e-14, 1.56319e-13, 2.84217e-13, 3.73131, -1.19209e-07, 3.52545, 0)

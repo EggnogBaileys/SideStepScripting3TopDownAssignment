@@ -3,6 +3,8 @@ extends Node3D
 @onready var camTransitions = $Cameras/CameraTransitions
 @onready var player = $Crazoonga
 
+var fish3spawned: bool = false
+
 #@onready var fish = $Enemies/Fish
 #var fishDefeated = false
 
@@ -16,8 +18,11 @@ var currentCam = 1
 @export var dialogue: NodePath
 
 
+func _ready():
+	$Fish3.position.z = -2
+
 func _process(_delta):
-	
+
 	if player.position.z > -90 and currentCam == 1:
 		currentCam = 2
 		camTransitions.play("Cam1To2")
@@ -31,6 +36,9 @@ func _process(_delta):
 	elif player.position.x < 5 and currentCam == 3:
 		currentCam = 2
 		camTransitions.play("Cam3To2")
+		if player.hasMatch and !fish3spawned:
+			fish3spawned = true
+			$Fish3.position.z = -78.5
 	elif player.position.z > -46 and currentCam == 3:
 		currentCam = 4 
 		camTransitions.play("Cam3To4")
@@ -38,6 +46,10 @@ func _process(_delta):
 		currentCam = 3
 		camTransitions.play("Cam4To3")
 		
-		
+	if player.position.z > -30:
+		print("level done")
 			
+
+
+
 

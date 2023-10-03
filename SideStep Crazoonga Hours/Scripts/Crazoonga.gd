@@ -31,6 +31,7 @@ enum Shell {
 @export var turnSpeed = DEFAULT_TURN_SPEED
 
 @onready var matchStick = $match
+var hasMatch = false
 
 # If shells are 0 and crab is hit, crab perishes.
 # With each shell found, crab can take one extra hit.
@@ -92,6 +93,10 @@ func _on_contact(contact: Node3D):
 		grabMatch()
 		contact.get_parent().queue_free()
 		return
+	if contact.is_in_group("log"):
+		if hasMatch:
+			contact.get_parent().queue_free()
+		return
 	if contact.is_in_group("firstShell"):
 		shell_count += 1
 		contact.increment_progress()
@@ -134,6 +139,7 @@ func set_shells(shells: int):
 
 func grabMatch():
 	matchStick.show()
+	hasMatch = true
 	# enable collision through animation
 
 
