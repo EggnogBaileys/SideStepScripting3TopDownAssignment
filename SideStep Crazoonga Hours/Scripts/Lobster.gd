@@ -3,7 +3,7 @@ extends MeshInstance3D
 
 signal throw_rock
 
-var health: int = 3
+var health: int = 9
 
 var players: Array[Node3D]
 
@@ -22,12 +22,18 @@ func _process(_delta):
 func _on_lobster_hurtbox_area_entered(_area):
 	print_debug("Ouch")
 	health -= 1
+	$Hit.play()
+	if health == 6:
+		$Movement.play("phase1change")
+	if health == 3:
+		$Movement.play("phase3")
 	if health < 1:
 		queue_free()
 
 
 
 func _on_rock_throw_timer_timeout():
+	$Lobster_Anims/AnimationPlayer.play("Lobster Attack")
 	emit_signal("throw_rock")
 
 

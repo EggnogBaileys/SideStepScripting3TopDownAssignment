@@ -529,7 +529,7 @@ tracks/4/path = NodePath("ClawSwing/CollisionShape3D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -697,7 +697,7 @@ radius = 1.097
 height = 4.94
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cqx6n"]
-size = Vector3(22.9004, 21.9872, 30.0685)
+size = Vector3(36.3563, 21.9872, 30.0685)
 
 [node name="Crazoonga" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -744,7 +744,7 @@ light_size = 0.176
 omni_range = 9.003
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0.115627, 0)
+transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, -3.66413e-08, 0.115627, -0.242664)
 shape = SubResource("CapsuleShape3D_8p8dy")
 
 [node name="ShellA" type="MeshInstance3D" parent="."]
@@ -1128,7 +1128,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClawSwing"]
-transform = Transform3D(0.945246, -2.19004e-08, 0.32636, 2.12631e-08, 1, 5.52019e-09, -0.32636, 1.72148e-09, 0.945246, 27.6966, 16.529, 3.86751)
+transform = Transform3D(0.995311, -2.19004e-08, -0.135654, 2.16312e-08, 1, -5.37372e-09, 0.0967321, 1.72148e-09, 1.3958, 14.3815, 16.6375, 7.19836)
 shape = SubResource("BoxShape3D_cqx6n")
 
 [node name="Knockback" type="Timer" parent="."]

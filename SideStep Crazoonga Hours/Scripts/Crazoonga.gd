@@ -7,7 +7,7 @@ signal death
 const H_KNOCKBACK_FORCE := 40.0
 const V_KNOCKBACK_FORCE := 25.0
 const MAX_FALL_SPEED := -80.0
-const DEFAULT_WALK_SPEED := 10.0
+const DEFAULT_WALK_SPEED := 10.5
 const DEFAULT_TURN_SPEED := 5.0
 const DEFAULT_SHELL_COUNT := 0
 const MAX_SHELL_COUNT := 3
@@ -130,6 +130,7 @@ func take_damage(hazard: Node3D):
 		$Death.play()
 		await get_tree().create_timer(3.0).timeout
 		get_tree().reload_current_scene()
+		return
 	
 	$Hit.play()
 

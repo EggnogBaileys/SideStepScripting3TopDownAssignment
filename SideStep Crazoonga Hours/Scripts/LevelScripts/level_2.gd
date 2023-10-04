@@ -30,7 +30,7 @@ func _process(_delta):
 	elif player.position.z < -91 and currentCam == 2:
 		currentCam = 1
 		camTransitions.play("Cam2To1")
-		
+
 	if player.position.x > 5 and currentCam < 3:
 		currentCam = 3
 		camTransitions.play("Cam2To3")
@@ -46,17 +46,13 @@ func _process(_delta):
 	elif player.position.z < -47 and currentCam == 4:
 		currentCam = 3
 		camTransitions.play("Cam4To3")
-		
+
 	if player.position.z > -30 and not isLevelDone:
 		isLevelDone = true
 		$EndScreenUI.show()
 		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://Scenes/Levels/level_2.tscn")
-		
+		get_tree().change_scene_to_file("res://Scenes/Levels/level_3.tscn")
+
 	if player.shell_count < 0:
 		$YouDied.show()
-			
-
-
-
 

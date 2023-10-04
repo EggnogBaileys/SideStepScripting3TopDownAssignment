@@ -352,13 +352,13 @@ sky_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
 ground_bottom_color = Color(0.266667, 0.227451, 0.180392, 1)
 ground_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
 
-[sub_resource type="Sky" id="Sky_oart6"]
+[sub_resource type="Sky" id="Sky_xk1vb"]
 sky_material = SubResource("ProceduralSkyMaterial_ivb1t")
 
 [sub_resource type="Environment" id="Environment_qpi21"]
 background_mode = 1
 background_energy_multiplier = 0.7
-sky = SubResource("Sky_oart6")
+sky = SubResource("Sky_xk1vb")
 ambient_light_source = 3
 ambient_light_energy = 2.58
 reflected_light_source = 2
@@ -600,7 +600,7 @@ light_energy = 0.4
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_up6uk")
-volume_db = -4.0
+volume_db = -3.0
 autoplay = true
 
 [node name="Area3D" type="Area3D" parent="."]
