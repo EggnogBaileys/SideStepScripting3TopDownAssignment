@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://du8rl5qo87gh5" path="res://Environment/Rocks/rock_pillar.tscn" id="5_r1ftj"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="9_ruah0"]
 [ext_resource type="AudioStream" uid="uid://2d4qmkd2eh5" path="res://Audio/Lobster.ogg" id="10_sclxd"]
-[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/you died.png" id="12_ysq87"]
+[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/You Died.png" id="12_ysq87"]
 
 [sub_resource type="Animation" id="Animation_he8y1"]
 length = 0.001

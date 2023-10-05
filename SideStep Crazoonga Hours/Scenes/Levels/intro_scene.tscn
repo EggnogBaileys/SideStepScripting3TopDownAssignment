@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dndrj3d3bybwd" path="res://Audio/Fishy Bloop Bloop.mp3" id="12_aon4j"]
 [ext_resource type="AudioStream" uid="uid://bpkl4wwfroh7w" path="res://Audio/Defeat.ogg" id="12_gh0o2"]
 [ext_resource type="AudioStream" uid="uid://ds4ugn7d4lemi" path="res://Audio/Ambient Waves.mp3" id="12_jv8g7"]
-[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/you died.png" id="15_5bh3d"]
+[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/You Died.png" id="15_5bh3d"]
 [ext_resource type="Texture2D" uid="uid://ddbx46mw4lv0o" path="res://Images/crazoonga nooooo! dark souls.png" id="15_rnfpt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_44up5"]

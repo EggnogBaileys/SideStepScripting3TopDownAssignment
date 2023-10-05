@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://0rx0lsvlnt8o" path="res://Scenes/fish.tscn" id="9_7a18d"]
 [ext_resource type="PackedScene" uid="uid://xuuyr4xk2grp" path="res://Scenes/PickupShell.tscn" id="11_rer4p"]
 [ext_resource type="AudioStream" uid="uid://cmoeauwfns627" path="res://Audio/Darkness Creeps.ogg" id="12_up6uk"]
-[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/you died.png" id="16_bvjk5"]
+[ext_resource type="Texture2D" uid="uid://bgi3ypnqbihqo" path="res://Images/You Died.png" id="16_bvjk5"]
 
 [sub_resource type="Animation" id="Animation_odocs"]
 resource_name = "Cam1To2"
