@@ -129,6 +129,7 @@ func take_damage(hazard: Node3D):
 		rotate_z(180)
 		$Death.play()
 		await get_tree().create_timer(3.0).timeout
+		Singleton.crabDeaths += 1
 		get_tree().reload_current_scene()
 		return
 	

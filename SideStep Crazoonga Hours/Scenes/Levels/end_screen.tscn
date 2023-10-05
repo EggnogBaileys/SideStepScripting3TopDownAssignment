@@ -1,15 +1,17 @@
-[gd_scene load_steps=53 format=3 uid="uid://dsn5l2kp7qlq1"]
+[gd_scene load_steps=64 format=3 uid="uid://fa3nu7a1ncsi"]
 
-[ext_resource type="Script" path="res://Scripts/Crazoonga.gd" id="1_na1ic"]
-[ext_resource type="AudioStream" uid="uid://ywm3hfex44xo" path="res://Audio/claw snap.ogg" id="2_abk3g"]
-[ext_resource type="Texture2D" uid="uid://d173n8rkrexkf" path="res://Images/whitegradient.png" id="2_xi4ep"]
-[ext_resource type="AudioStream" uid="uid://bvqaieyhxj1lb" path="res://Audio/step2.ogg" id="3_8mi2w"]
-[ext_resource type="Script" path="res://Scripts/mydefaultparticle.gd" id="3_eudhu"]
-[ext_resource type="Gradient" uid="uid://byunn3d2j2ccv" path="res://Materials/Particles/whitefade.tres" id="4_77omx"]
-[ext_resource type="AudioStream" uid="uid://chro14f2ajclk" path="res://Audio/step1.ogg" id="4_l70o8"]
-[ext_resource type="AudioStream" uid="uid://cibh4r3vc02w1" path="res://Audio/EnemyHit.ogg" id="5_7swgi"]
-[ext_resource type="AudioStream" uid="uid://dil3pw5n3x3le" path="res://Audio/shellpickup.ogg" id="9_4j8ty"]
-[ext_resource type="AudioStream" uid="uid://bpkl4wwfroh7w" path="res://Audio/Defeat.ogg" id="10_elj0p"]
+[ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_honj7"]
+[ext_resource type="Texture2D" uid="uid://d173n8rkrexkf" path="res://Images/whitegradient.png" id="2_myv3x"]
+[ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="3_g53ph"]
+[ext_resource type="Script" path="res://Scripts/mydefaultparticle.gd" id="3_i76c5"]
+[ext_resource type="Gradient" uid="uid://byunn3d2j2ccv" path="res://Materials/Particles/whitefade.tres" id="4_7ceu7"]
+[ext_resource type="AudioStream" uid="uid://ywm3hfex44xo" path="res://Audio/claw snap.ogg" id="5_4mx7a"]
+[ext_resource type="AudioStream" uid="uid://bvqaieyhxj1lb" path="res://Audio/step2.ogg" id="6_saw52"]
+[ext_resource type="AudioStream" uid="uid://chro14f2ajclk" path="res://Audio/step1.ogg" id="7_eq43u"]
+[ext_resource type="AudioStream" uid="uid://cibh4r3vc02w1" path="res://Audio/EnemyHit.ogg" id="8_d6yuc"]
+[ext_resource type="AudioStream" uid="uid://dil3pw5n3x3le" path="res://Audio/shellpickup.ogg" id="9_surj2"]
+[ext_resource type="AudioStream" uid="uid://bpkl4wwfroh7w" path="res://Audio/Defeat.ogg" id="10_ubk2s"]
+[ext_resource type="Script" path="res://Scripts/LevelScripts/end script.gd" id="12_7gmy1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wl1ur"]
 resource_name = "Wood"
@@ -83,15 +85,15 @@ blend_mode = 1
 cull_mode = 2
 no_depth_test = true
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.862745, 0, 0.364706, 1)
-albedo_texture = ExtResource("2_xi4ep")
+albedo_color = Color(1, 0.0784314, 0.576471, 1)
+albedo_texture = ExtResource("2_myv3x")
 albedo_texture_force_srgb = true
 emission_enabled = true
 emission = Color(1, 0.529412, 0.184314, 1)
-emission_energy_multiplier = 1.8
+emission_energy_multiplier = 1.3
 billboard_mode = 1
 billboard_keep_scale = true
-script = ExtResource("3_eudhu")
+script = ExtResource("3_i76c5")
 
 [sub_resource type="Curve" id="Curve_xn5r3"]
 max_value = 81.03
@@ -102,10 +104,10 @@ point_count = 3
 curve = SubResource("Curve_xn5r3")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ytj72"]
-gradient = ExtResource("4_77omx")
+gradient = ExtResource("4_7ceu7")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lyumo"]
-gradient = ExtResource("4_77omx")
+gradient = ExtResource("4_7ceu7")
 
 [sub_resource type="Curve" id="Curve_e280v"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -489,6 +491,7 @@ tracks/2/keys = PackedFloat32Array(0, 1, 0.0390122, 0.0785491, -0.0139432, 0.996
 [sub_resource type="Animation" id="Animation_177x1"]
 resource_name = "Swing"
 length = 0.4
+loop_mode = 2
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -521,18 +524,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ClawSnap:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2tw01"]
@@ -699,26 +690,126 @@ height = 4.94
 [sub_resource type="BoxShape3D" id="BoxShape3D_cqx6n"]
 size = Vector3(36.3563, 21.9872, 30.0685)
 
-[node name="Crazoonga" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i38m6"]
+sky_top_color = Color(0.407843, 0.556863, 1, 1)
+sky_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
+ground_bottom_color = Color(0.266667, 0.227451, 0.180392, 1)
+ground_horizon_color = Color(0.668628, 0.696078, 0.795098, 1)
+
+[sub_resource type="Sky" id="Sky_lvih5"]
+sky_material = SubResource("ProceduralSkyMaterial_i38m6")
+
+[sub_resource type="Environment" id="Environment_movxn"]
+background_mode = 2
+background_color = Color(0.603922, 0.643137, 0.858824, 1)
+background_energy_multiplier = 0.7
+sky = SubResource("Sky_lvih5")
+ambient_light_color = Color(0, 0.737255, 0.937255, 1)
+ambient_light_energy = 2.58
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.407843, 0.513726, 0.937255, 1)
+fog_density = 0.005
+fog_sky_affect = 0.4
+volumetric_fog_density = 0.065
+volumetric_fog_albedo = Color(0.478431, 0.478431, 0.478431, 1)
+volumetric_fog_emission = Color(0.34902, 0.403922, 0.654902, 1)
+volumetric_fog_length = 50.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q700p"]
+material = ExtResource("1_honj7")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_u7qqx"]
+vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c7dos"]
+size = Vector3(129.762, 1, 285.005)
+
+[sub_resource type="Animation" id="Animation_hr5kc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(7.47761, 2.38266, 1.59304)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.244718, 1.39521, -0.0674956)]
+}
+
+[sub_resource type="Animation" id="Animation_1w2gy"]
+resource_name = "camanim"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.46912, 2.59193, 3.62345), Vector3(7.47761, 2.38266, 1.59304), Vector3(5.46912, 2.59193, 3.62345), Vector3(2.56471, 2.97969, 3.41846), Vector3(-0.400463, 2.46003, 2.67946), Vector3(5.46912, 2.59193, 3.62345)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.378719, 0.605629, 4.0094e-09), Vector3(-0.244718, 1.39521, -0.0674956), Vector3(-0.378719, 0.605629, 4.0094e-09), Vector3(-0.619387, 0.215908, -0.26966), Vector3(-0.437202, -0.688261, -0.243709), Vector3(-0.378719, 0.605629, 4.0094e-09)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyvtw"]
+_data = {
+"RESET": SubResource("Animation_hr5kc"),
+"camanim": SubResource("Animation_1w2gy")
+}
+
+[node name="end screen" type="Node3D"]
+
+[node name="Crazoonga" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(-0.273724, 0, -0.961808, 0, 1, 0, 0.961808, 0, -0.273724, 2.73174, 0.399664, -2.38816e-07)
 collision_layer = 2
 collision_mask = 25
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 floor_stop_on_slope = false
-script = ExtResource("1_na1ic")
 metadata/_edit_group_ = true
 
-[node name="match" type="Node3D" parent="."]
+[node name="match" type="Node3D" parent="Crazoonga"]
 transform = Transform3D(0.303159, 0.611595, 0, -0.611595, 0.303159, 0, -3.55271e-15, 0, 0.682608, 1.13528, 0.405746, -2.63291)
 visible = false
 
-[node name="Cube" type="MeshInstance3D" parent="match"]
+[node name="Cube" type="MeshInstance3D" parent="Crazoonga/match"]
 transform = Transform3D(0.09, 0, 0, 0, 1.9, 0, 0, 0, 0.09, 0, 1.89495, 0)
 mesh = SubResource("ArrayMesh_5a57b")
 skeleton = NodePath("")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="match"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Crazoonga/match"]
 transform = Transform3D(0.09, 5.77823e-15, -4.44089e-16, 3.72529e-09, 1.9, 4.44089e-16, 6.66134e-16, 0, 0.09, -1.19209e-07, 3.67376, 0)
 material_override = SubResource("StandardMaterial3D_thss7")
 amount = 16
@@ -728,46 +819,49 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nj0ru")
 draw_pass_1 = SubResource("QuadMesh_co6tn")
 
-[node name="MatchBurn" type="Area3D" parent="match"]
+[node name="MatchBurn" type="Area3D" parent="Crazoonga/match"]
 transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
 collision_layer = 33
 
-[node name="MatchCollision" type="CollisionShape3D" parent="match/MatchBurn"]
+[node name="MatchCollision" type="CollisionShape3D" parent="Crazoonga/match/MatchBurn"]
 transform = Transform3D(3.73131, 1.13475e-14, -4.26326e-14, 1.13475e-14, 3.73131, 8.52651e-14, 1.56319e-13, 2.84217e-13, 3.73131, -1.19209e-07, 3.52545, 0)
 shape = SubResource("SphereShape3D_ypxhq")
 disabled = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="match"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Crazoonga/match"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24259, 0)
 light_color = Color(0.917647, 0.756863, 0.74902, 1)
 light_size = 0.176
 omni_range = 9.003
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crazoonga"]
 transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, -3.66413e-08, 0.115627, -0.242664)
 shape = SubResource("CapsuleShape3D_8p8dy")
 
-[node name="ShellA" type="MeshInstance3D" parent="."]
+[node name="ShellA" type="MeshInstance3D" parent="Crazoonga"]
 transform = Transform3D(-1.02477, 3.08224e-09, -8.95352e-08, 0, 1.02416, 0.0352567, 8.95882e-08, 0.0352567, -1.02416, 0.000470401, -0.109092, -0.0100994)
+visible = false
 material_override = SubResource("StandardMaterial3D_pvtk6")
 mesh = SubResource("ArrayMesh_urblv")
 skeleton = NodePath("")
 
-[node name="ShellB" type="MeshInstance3D" parent="."]
+[node name="ShellB" type="MeshInstance3D" parent="Crazoonga"]
 transform = Transform3D(-1.02477, 3.08224e-09, -8.95352e-08, 0, 1.02416, 0.0352567, 8.95882e-08, 0.0352567, -1.02416, 0.000470401, -0.109092, -0.0100994)
+visible = false
 material_override = SubResource("StandardMaterial3D_pvtk6")
 material_overlay = SubResource("StandardMaterial3D_e7ulv")
 mesh = SubResource("ArrayMesh_urblv")
 skeleton = NodePath("")
 
-[node name="ShellC" type="MeshInstance3D" parent="."]
+[node name="ShellC" type="MeshInstance3D" parent="Crazoonga"]
 transform = Transform3D(-1.02477, 3.08224e-09, -8.95352e-08, 0, 1.02416, 0.0352567, 8.95882e-08, 0.0352567, -1.02416, 0.000470401, -0.109092, -0.0100994)
+visible = false
 material_override = SubResource("StandardMaterial3D_nen0o")
 material_overlay = SubResource("StandardMaterial3D_k0q2u")
 mesh = SubResource("ArrayMesh_4em7i")
 skeleton = NodePath("")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="."]
+[node name="Skeleton3D" type="Skeleton3D" parent="Crazoonga"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 bones/0/name = "base"
 bones/0/parent = -1
@@ -809,7 +903,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 3.86986e-09, 1.19155e-07, -2.82013e-09, 0.999961, -0.00880854, -1.19185e-07, 0.00880854, 0.999961, 4.64368e-08, 1.00947, 6.6033e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(4.64368e-08, 1.00947, 6.6033e-09)
-bones/5/rotation = Quaternion(-0.122204, -0.110011, -0.589634, 0.790756)
+bones/5/rotation = Quaternion(-0.140523, -0.0778563, -0.65408, 0.739169)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Leg B End R"
 bones/6/parent = 5
@@ -837,7 +931,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(1, -0.000117895, -8.2346e-07, 0.000117893, 0.999871, 0.01605, -1.06885e-06, -0.01605, 0.999871, 5.73054e-08, 1.07994, -4.65661e-10)
 bones/9/enabled = true
 bones/9/position = Vector3(5.73054e-08, 1.07994, -4.65661e-10)
-bones/9/rotation = Quaternion(-0.147767, -0.030784, -0.604835, 0.781915)
+bones/9/rotation = Quaternion(-0.15453, 0.0278103, -0.656992, 0.737366)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Leg A End R"
 bones/10/parent = 9
@@ -893,7 +987,7 @@ bones/17/parent = 16
 bones/17/rest = Transform3D(1, -1.31329e-08, 1.31963e-10, 1.31332e-08, 0.999847, -0.0174704, 9.74947e-11, 0.0174704, 0.999847, 1.97654e-08, 0.980033, 3.79979e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(1.97654e-08, 0.980033, 3.79979e-08)
-bones/17/rotation = Quaternion(-0.118778, -0.24011, -0.549652, 0.791278)
+bones/17/rotation = Quaternion(-0.137321, -0.223312, -0.619688, 0.739771)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Leg C End R"
 bones/18/parent = 17
@@ -921,7 +1015,7 @@ bones/21/parent = 20
 bones/21/rest = Transform3D(1, -6.92033e-09, 4.63158e-13, 6.92033e-09, 1, -7.84099e-05, 7.94647e-14, 7.84099e-05, 1, 9.9984e-08, 0.931091, 1.21972e-07)
 bones/21/enabled = true
 bones/21/position = Vector3(9.9984e-08, 0.931091, 1.21972e-07)
-bones/21/rotation = Quaternion(-0.122507, -0.334449, -0.490036, 0.795613)
+bones/21/rotation = Quaternion(-0.143749, -0.358969, -0.552289, 0.738549)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Leg D End R"
 bones/22/parent = 21
@@ -956,7 +1050,7 @@ bones/26/parent = 25
 bones/26/rest = Transform3D(1, 2.93059e-09, -1.19215e-07, -3.98059e-09, 0.999961, -0.00880852, 1.19185e-07, 0.00880852, 0.999961, -8.86191e-08, 1.00947, 1.84499e-08)
 bones/26/enabled = true
 bones/26/position = Vector3(-8.86191e-08, 1.00947, 1.84499e-08)
-bones/26/rotation = Quaternion(-0.0757675, 0.103489, 0.526569, 0.840401)
+bones/26/rotation = Quaternion(-0.0567131, 0.110258, 0.486863, 0.864634)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Leg B End L"
 bones/27/parent = 26
@@ -984,7 +1078,7 @@ bones/30/parent = 29
 bones/30/rest = Transform3D(1, 0.000117882, 8.24519e-07, -0.00011788, 0.999871, 0.01605, 1.06758e-06, -0.01605, 0.999871, -3.23635e-08, 1.07994, 3.25963e-08)
 bones/30/enabled = true
 bones/30/position = Vector3(-3.23635e-08, 1.07994, 3.25963e-08)
-bones/30/rotation = Quaternion(-0.119279, 0.0507623, 0.536208, 0.834072)
+bones/30/rotation = Quaternion(-0.108454, 0.0730555, 0.49838, 0.85704)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "Leg A End L"
 bones/31/parent = 30
@@ -1040,7 +1134,7 @@ bones/38/parent = 37
 bones/38/rest = Transform3D(1, 7.28387e-09, -2.97356e-11, -7.28327e-09, 0.999847, -0.0174704, -9.75214e-11, 0.0174704, 0.999847, -9.3804e-08, 0.980033, 9.60906e-08)
 bones/38/enabled = true
 bones/38/position = Vector3(-9.3804e-08, 0.980033, 9.60906e-08)
-bones/38/rotation = Quaternion(-0.0721267, 0.219538, 0.489682, 0.840721)
+bones/38/rotation = Quaternion(-0.0529675, 0.217181, 0.449471, 0.864871)
 bones/38/scale = Vector3(1, 1, 1)
 bones/39/name = "Leg C End L"
 bones/39/parent = 38
@@ -1068,7 +1162,7 @@ bones/42/parent = 41
 bones/42/rest = Transform3D(1, 5.0099e-09, -6.65222e-13, -5.0099e-09, 1, -7.83503e-05, 2.72695e-13, 7.83503e-05, 1, 1.48489e-08, 0.931091, 1.2348e-07)
 bones/42/enabled = true
 bones/42/position = Vector3(1.48489e-08, 0.931091, 1.2348e-07)
-bones/42/rotation = Quaternion(-0.0732038, 0.282618, 0.453266, 0.84221)
+bones/42/rotation = Quaternion(-0.0525001, 0.259031, 0.422174, 0.86713)
 bones/42/scale = Vector3(1, 1, 1)
 bones/43/name = "Leg D End L"
 bones/43/parent = 42
@@ -1085,67 +1179,155 @@ bones/44/position = Vector3(2.91857e-08, 0.561381, 3.26852e-08)
 bones/44/rotation = Quaternion(0.0103838, -6.03994e-14, -6.64312e-09, 0.999946)
 bones/44/scale = Vector3(1, 1, 1)
 
-[node name="Cube" type="MeshInstance3D" parent="Skeleton3D"]
+[node name="Cube" type="MeshInstance3D" parent="Crazoonga/Skeleton3D"]
 mesh = SubResource("ArrayMesh_u6h2n")
 skin = SubResource("Skin_62ukt")
 
-[node name="Claw" type="AnimationPlayer" parent="."]
+[node name="Claw" type="AnimationPlayer" parent="Crazoonga"]
 autoplay = "Default"
 libraries = {
 "": SubResource("AnimationLibrary_2tw01")
 }
 
-[node name="Legs" type="AnimationPlayer" parent="."]
+[node name="Legs" type="AnimationPlayer" parent="Crazoonga"]
 root_node = NodePath("../Claw")
-autoplay = "Idle"
+autoplay = "Walk"
 libraries = {
 "": SubResource("AnimationLibrary_s3ur6")
 }
 
-[node name="ClawSnap" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_abk3g")
+[node name="ClawSnap" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("5_4mx7a")
 
-[node name="SideStep2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_8mi2w")
+[node name="SideStep2" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("6_saw52")
 
-[node name="SideStep1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_l70o8")
+[node name="SideStep1" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("7_eq43u")
 
-[node name="Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_7swgi")
+[node name="Hit" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("8_d6yuc")
 
-[node name="CrazoongaArea3D" type="Area3D" parent="."]
+[node name="CrazoongaArea3D" type="Area3D" parent="Crazoonga"]
 collision_layer = 0
 collision_mask = 24
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CrazoongaArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crazoonga/CrazoongaArea3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.116, 0)
 shape = SubResource("CapsuleShape3D_24vg4")
 
-[node name="ClawSwing" type="Area3D" parent="."]
+[node name="ClawSwing" type="Area3D" parent="Crazoonga"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawSwing"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crazoonga/ClawSwing"]
 transform = Transform3D(0.995311, -2.19004e-08, -0.135654, 2.16312e-08, 1, -5.37372e-09, 0.0967321, 1.72148e-09, 1.3958, 14.3815, 16.6375, 7.19836)
 shape = SubResource("BoxShape3D_cqx6n")
-disabled = true
 
-[node name="Knockback" type="Timer" parent="."]
+[node name="Knockback" type="Timer" parent="Crazoonga"]
 process_callback = 0
 wait_time = 0.3
 one_shot = true
 
-[node name="ShellPickup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_4j8ty")
+[node name="ShellPickup" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("9_surj2")
 volume_db = -2.0
 
-[node name="Death" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_elj0p")
+[node name="Death" type="AudioStreamPlayer" parent="Crazoonga"]
+stream = ExtResource("10_ubk2s")
 volume_db = -5.0
 
-[connection signal="ready" from="." to="." method="show_shells"]
-[connection signal="animation_finished" from="Claw" to="." method="_on_claw_animation_finished"]
-[connection signal="area_entered" from="CrazoongaArea3D" to="." method="_on_contact"]
-[connection signal="body_entered" from="CrazoongaArea3D" to="." method="_on_contact"]
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.752535, -0.21957, -0.62087, -0.398127, 0.902673, 0.163326, 0.524582, 0.370093, -0.766711, -30.2135, 52.2636, -57.2962)
+light_color = Color(0.992157, 1, 0.870588, 1)
+light_energy = 0.709
+shadow_enabled = true
+shadow_normal_bias = 0.865
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_movxn")
+
+[node name="Beach Ground" type="StaticBody3D" parent="."]
+
+[node name="Beach" type="MeshInstance3D" parent="Beach Ground"]
+transform = Transform3D(59.6041, 0, 0, 0, 59.6041, 0, 0, 0, 130.214, 0, -0.781502, 1.22964)
+material_override = ExtResource("1_honj7")
+mesh = SubResource("PlaneMesh_q700p")
+skeleton = NodePath("../..")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Beach Ground/Beach"]
+visible = false
+navigation_mesh = SubResource("NavigationMesh_u7qqx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beach Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_c7dos")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Crabs" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g53ph")
+volume_db = -6.0
+autoplay = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.190377, -0.226233, 0.955288, -0.0654349, 0.967997, 0.242283, -0.979528, -0.108634, 0.169481, 7.47761, 2.38266, 1.59304)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D2"]
+autoplay = "camanim"
+libraries = {
+"": SubResource("AnimationLibrary_hyvtw")
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("12_7gmy1")
+
+[node name="Enemies" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -613.0
+offset_top = 27.0
+offset_right = -197.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 40
+text = "ENEMIES DEFEATED: 6"
+
+[node name="Time" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -888.0
+offset_top = 27.0
+offset_right = -472.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 40
+text = "TIME TAKEN:"
+
+[node name="Deaths" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 185.0
+offset_top = 27.0
+offset_right = 601.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 40
+text = "DEAD CRABS:"
+
+[connection signal="ready" from="Crazoonga" to="Crazoonga" method="show_shells" flags=18]
+[connection signal="animation_finished" from="Crazoonga/Claw" to="Crazoonga" method="_on_claw_animation_finished" flags=18]
+[connection signal="area_entered" from="Crazoonga/CrazoongaArea3D" to="Crazoonga" method="_on_contact" flags=18]
+[connection signal="body_entered" from="Crazoonga/CrazoongaArea3D" to="Crazoonga" method="_on_contact" flags=18]

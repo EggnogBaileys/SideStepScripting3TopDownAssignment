@@ -43,11 +43,11 @@ func _on_flop_timer_timeout():
 
 func _on_hurtbox_area_entered(area):
 	$Hit.play()
-	print_debug("Ouch")
 	CalculateKnockback(area)
 	health -= 1
 	if health < 1:
 		await get_tree().create_timer(0.25).timeout
+		Singleton.enemiesDefeated += 1
 		queue_free()
 
 

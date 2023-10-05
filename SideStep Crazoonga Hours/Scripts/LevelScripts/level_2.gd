@@ -20,6 +20,7 @@ var currentCam = 1
 
 
 func _ready():
+	Singleton.enemiesDefeated = 1
 	$Fish3.position.z = -2
 
 func _process(_delta):
