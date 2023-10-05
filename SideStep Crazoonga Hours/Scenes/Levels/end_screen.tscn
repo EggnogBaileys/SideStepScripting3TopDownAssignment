@@ -1,6 +1,7 @@
-[gd_scene load_steps=64 format=3 uid="uid://fa3nu7a1ncsi"]
+[gd_scene load_steps=65 format=3 uid="uid://fa3nu7a1ncsi"]
 
 [ext_resource type="Material" uid="uid://r5inodyqbivo" path="res://Materials/BeachSand.tres" id="1_honj7"]
+[ext_resource type="Script" path="res://Scripts/LevelScripts/end_screen.gd" id="1_qgvmc"]
 [ext_resource type="Texture2D" uid="uid://d173n8rkrexkf" path="res://Images/whitegradient.png" id="2_myv3x"]
 [ext_resource type="AudioStream" uid="uid://bbwngqm4p302a" path="res://Audio/crazoonga rave.ogg" id="3_g53ph"]
 [ext_resource type="Script" path="res://Scripts/mydefaultparticle.gd" id="3_i76c5"]
@@ -790,6 +791,7 @@ _data = {
 }
 
 [node name="end screen" type="Node3D"]
+script = ExtResource("1_qgvmc")
 
 [node name="Crazoonga" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(-0.273724, 0, -0.961808, 0, 1, 0, 0.961808, 0, -0.273724, 2.73174, 0.399664, -2.38816e-07)
@@ -1327,7 +1329,16 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 40
 text = "DEAD CRABS:"
 
+[node name="Button" type="Button" parent="UI"]
+offset_left = 731.0
+offset_top = 963.0
+offset_right = 1192.0
+offset_bottom = 1032.0
+theme_override_font_sizes/font_size = 44
+text = "RESTART ADVENTURE"
+
 [connection signal="ready" from="Crazoonga" to="Crazoonga" method="show_shells" flags=18]
 [connection signal="animation_finished" from="Crazoonga/Claw" to="Crazoonga" method="_on_claw_animation_finished" flags=18]
 [connection signal="area_entered" from="Crazoonga/CrazoongaArea3D" to="Crazoonga" method="_on_contact" flags=18]
 [connection signal="body_entered" from="Crazoonga/CrazoongaArea3D" to="Crazoonga" method="_on_contact" flags=18]
+[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
