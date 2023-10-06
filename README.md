@@ -10,3 +10,5 @@ To access the BUILD, which was too large (over 100MB) to add into GitHub, please
 https://drive.google.com/file/d/1eKCege9xlum0z5oJhk9JdnL-jLWi9zYR/view?usp=sharing
 
 The .exe on its own is all that is needed to run the game.
+
+We had the help of one friend, Roland Marchand, who helped us get knockback working, and then tweaked a few settings and physics-related bugs in the gameworld that we weren't familiar with.
